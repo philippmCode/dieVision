@@ -28,7 +28,7 @@
                     .then( response => {
     
                     if ( response == "granted" ) {
-                        window.addEventListener( "devicemotion", (event) => {
+                        window.addEventListener( "deviceorientation", (event) => {
                             // Holen der Drehungswerte (Alpha, Beta, Gamma)
                             let alpha = event.alpha;  // Drehung um die Z-Achse (Winkel auf der Oberfläche)
                             let beta = event.beta;    // Drehung um die X-Achse (Neigung des Geräts)
