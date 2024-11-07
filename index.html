@@ -9,6 +9,7 @@
 <body>
     
     <h1>Baby hello</h1>
+    <button id="request">Enable Device Orientation</button>
 
     <!-- Area to show the Device Orientation data -->
     <div id="orientationData">
@@ -20,28 +21,39 @@
 
     <script>
 
+        function permission () {
+            if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
+                // (optional) Do something before API request prompt.
+                DeviceMotionEvent.requestPermission()
+                    .then( response => {
+                    // (optional) Do something after API prompt dismissed.
+                    if ( response == "granted" ) {
+                        window.addEventListener( "devicemotion", (e) => {
+                            // Holen der Drehungswerte (Alpha, Beta, Gamma)
+                            let alpha = event.alpha;  // Drehung um die Z-Achse (Winkel auf der Oberfläche)
+                            let beta = event.beta;    // Drehung um die X-Achse (Neigung des Geräts)
+                            let gamma = event.gamma;  // Drehung um die Y-Achse (Neigung des Geräts)
+
+                            // Wende die Drehung des Bildes basierend auf dem Alpha-Wert (Z-Achse) an
+                            if (alpha !== null) {
+                                document.getElementById('image').style.transform = 'rotate(' + alpha + 'deg)';
+                            }
+                        })
+                    }
+                })
+                    .catch( console.error )
+            } else {
+                alert( "DeviceMotionEvent is not defined" );
+            }
+        }
+        const btn = document.getElementById( "request" );
+        btn.addEventListener( "click", permission );
+
 
         function displayOrientationData(alpha, beta, gamma) {
             document.getElementById('alpha').innerText = alpha !== null ? alpha : '-';
             document.getElementById('beta').innerText = beta !== null ? beta : '-';
             document.getElementById('gamma').innerText = gamma !== null ? gamma : '-';
-        }
-
-        // Überprüfen, ob das Gerät die DeviceOrientation-API unterstützt
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener('deviceorientation', function(event) {
-                // Holen der Drehungswerte (Alpha, Beta, Gamma)
-                let alpha = event.alpha;  // Drehung um die Z-Achse (Winkel auf der Oberfläche)
-                let beta = event.beta;    // Drehung um die X-Achse (Neigung des Geräts)
-                let gamma = event.gamma;  // Drehung um die Y-Achse (Neigung des Geräts)
-
-                // Wende die Drehung des Bildes basierend auf dem Alpha-Wert (Z-Achse) an
-                if (alpha !== null) {
-                    document.getElementById('image').style.transform = 'rotate(' + alpha + 'deg)';
-                }
-            }, false);
-        } else {
-            console.log("DeviceOrientationEvent wird auf diesem Gerät nicht unterstützt.");
         }
     </script>
 </body>
