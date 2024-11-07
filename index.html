@@ -34,6 +34,8 @@
                             let beta = event.beta;    // Drehung um die X-Achse (Neigung des Geräts)
                             let gamma = event.gamma;  // Drehung um die Y-Achse (Neigung des Geräts)
 
+                            displayOrientationData(alpha, beta, gamma);
+
                             // Wende die Drehung des Bildes basierend auf dem Alpha-Wert (Z-Achse) an
                             if (alpha !== null) {
                                 document.getElementById('image').style.transform = 'rotate(' + alpha + 'deg)';
