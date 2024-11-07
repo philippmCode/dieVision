@@ -4,22 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>360 Image Viewer</title>
-    <link id="css" rel="stylesheet" type="text/css" href="picture.css">
     <style>
         body {
             margin: 0;
             overflow: hidden;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background-color: #000;
         }
-        #image {
+        #image-container {
             width: 100%;
-            max-width: 100%;
-            height: auto;
-            transition: transform 0.1s ease-out; /* Smooth transition for image rotation */
+            height: 100%;
+            position: relative;
+            perspective: 1000px; /* Depth for 3D effect */
+        }
+        #image {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform-origin: center center;
+            transform: translateX(-50%);
+            height: 100%; /* Ensure the image fills the height of the screen */
+            transition: transform 0.1s ease-out; /* Smooth transition for rotation */
         }
         #orientationData {
             position: absolute;
@@ -31,8 +36,8 @@
     </style>
 </head>
 <body>
-    
-    <h1>Baby hello</h1>
+
+    <h1>360 Image Viewer</h1>
     <button id="request">Enable Device Orientation</button>
 
     <!-- Area to show the Device Orientation data -->
@@ -42,7 +47,10 @@
         <p>Gamma: <span id="gamma">-</span></p>
     </div>
 
-    <img id="image" src="Zimmer.jpeg" alt="360 Image">
+    <!-- Container for the image -->
+    <div id="image-container">
+        <img id="image" src="Zimmer.jpeg" alt="360 Image">
+    </div>
 
     <script>
         function permission() {
@@ -60,8 +68,9 @@
 
                                 // Wende die Drehung des Bildes basierend auf dem Alpha-Wert (Z-Achse) an
                                 if (alpha !== null) {
-                                    // Drehe das Bild basierend auf der Alpha-Werte (Z-Achse)
-                                    document.getElementById('image').style.transform = 'rotate(' + alpha + 'deg)';
+                                    // Drehe das Bild basierend auf dem Alpha-Wert, um es wie ein Panorama zu zeigen
+                                    let rotation = alpha; // Alpha gibt die Drehung um die Z-Achse (horizontal)
+                                    document.getElementById('image').style.transform = 'translateX(-50%) rotateY(' + rotation + 'deg)';
                                 }
                             });
                         }
