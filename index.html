@@ -3,8 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>360 Image Viewer</title>
     <link id="css" rel="stylesheet" type="text/css" href="picture.css">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+        #image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.1s ease-out; /* Smooth transition for image rotation */
+        }
+        #orientationData {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
     
@@ -18,44 +42,43 @@
         <p>Gamma: <span id="gamma">-</span></p>
     </div>
 
+    <img id="image" src="Zimmer.jpeg" alt="360 Image">
 
     <script>
-
-        function permission () {
-            if ( typeof( DeviceOrientationEvent ) !== "undefined" && typeof( DeviceOrientationEvent.requestPermission ) === "function" ) {
-                // (optional) Do something before API request prompt.
+        function permission() {
+            if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
                 DeviceOrientationEvent.requestPermission()
-                    .then( response => {
-    
-                    if ( response == "granted" ) {
-                        window.addEventListener( "deviceorientation", (event) => {
-                            // Holen der Drehungswerte (Alpha, Beta, Gamma)
-                            let alpha = event.alpha;  // Drehung um die Z-Achse (Winkel auf der Oberfläche)
-                            let beta = event.beta;    // Drehung um die X-Achse (Neigung des Geräts)
-                            let gamma = event.gamma;  // Drehung um die Y-Achse (Neigung des Geräts)
+                    .then(response => {
+                        if (response === "granted") {
+                            window.addEventListener("deviceorientation", (event) => {
+                                // Holen der Drehungswerte (Alpha, Beta, Gamma)
+                                let alpha = event.alpha;  // Drehung um die Z-Achse (Winkel auf der Oberfläche)
+                                let beta = event.beta;    // Drehung um die X-Achse (Neigung des Geräts)
+                                let gamma = event.gamma;  // Drehung um die Y-Achse (Neigung des Geräts)
 
-                            displayOrientationData(alpha, beta, gamma);
+                                displayOrientationData(alpha, beta, gamma);
 
-                            // Wende die Drehung des Bildes basierend auf dem Alpha-Wert (Z-Achse) an
-                            if (alpha !== null) {
-                                document.getElementById('image').style.transform = 'rotate(' + alpha + 'deg)';
-                            }
-                        })
-                    }
-                })
-                    .catch( console.error )
+                                // Wende die Drehung des Bildes basierend auf dem Alpha-Wert (Z-Achse) an
+                                if (alpha !== null) {
+                                    // Drehe das Bild basierend auf der Alpha-Werte (Z-Achse)
+                                    document.getElementById('image').style.transform = 'rotate(' + alpha + 'deg)';
+                                }
+                            });
+                        }
+                    })
+                    .catch(console.error);
             } else {
-                alert( "DeviceMotionEvent is not defined" );
+                alert("DeviceMotionEvent is not defined");
             }
         }
-        const btn = document.getElementById( "request" );
-        btn.addEventListener( "click", permission );
 
+        const btn = document.getElementById("request");
+        btn.addEventListener("click", permission);
 
         function displayOrientationData(alpha, beta, gamma) {
-            document.getElementById('alpha').innerText = alpha !== null ? alpha : '-';
-            document.getElementById('beta').innerText = beta !== null ? beta : '-';
-            document.getElementById('gamma').innerText = gamma !== null ? gamma : '-';
+            document.getElementById('alpha').innerText = alpha !== null ? alpha.toFixed(2) : '-';
+            document.getElementById('beta').innerText = beta !== null ? beta.toFixed(2) : '-';
+            document.getElementById('gamma').innerText = gamma !== null ? gamma.toFixed(2) : '-';
         }
     </script>
 </body>
