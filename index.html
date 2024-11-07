@@ -9,11 +9,24 @@
 <body>
     
     <h1>Baby hello</h1>
-    <div id="container">
-        <img id = "image" src="zimmer.jpeg">
+
+    <!-- Area to show the Device Orientation data -->
+    <div id="orientationData">
+        <p>Alpha: <span id="alpha">-</span></p>
+        <p>Beta: <span id="beta">-</span></p>
+        <p>Gamma: <span id="gamma">-</span></p>
     </div>
 
+
     <script>
+
+
+        function displayOrientationData(alpha, beta, gamma) {
+            document.getElementById('alpha').innerText = alpha !== null ? alpha : '-';
+            document.getElementById('beta').innerText = beta !== null ? beta : '-';
+            document.getElementById('gamma').innerText = gamma !== null ? gamma : '-';
+        }
+
         // Überprüfen, ob das Gerät die DeviceOrientation-API unterstützt
         if (window.DeviceOrientationEvent) {
             window.addEventListener('deviceorientation', function(event) {
@@ -21,10 +34,6 @@
                 let alpha = event.alpha;  // Drehung um die Z-Achse (Winkel auf der Oberfläche)
                 let beta = event.beta;    // Drehung um die X-Achse (Neigung des Geräts)
                 let gamma = event.gamma;  // Drehung um die Y-Achse (Neigung des Geräts)
-
-                console.log("Alpha: ", alpha); // Zeigt die Drehung in der Konsole an
-                console.log("Beta: ", beta);
-                console.log("Gamma: ", gamma);
 
                 // Wende die Drehung des Bildes basierend auf dem Alpha-Wert (Z-Achse) an
                 if (alpha !== null) {
