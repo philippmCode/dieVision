@@ -35,23 +35,12 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50vw; /* 50% der Breite des Viewports */
-    height: 50vh; /* 50% der Höhe des Viewports */
-    background-image: url('Zimmer.jpg');
+    width: 70vw;  /* 70% der Breite des Viewports */
+    height: 70vh;  /* 70% der Höhe des Viewports */
+    background-image: url('Zimmer.jpeg');
     background-size: cover;
     background-position: center;
     perspective: 1000px;
-}
-
-.inner-panorama {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: inherit;
-    background-size: cover;
-    transition: transform 0.1s ease-out;
 }
 
 #image-container {
