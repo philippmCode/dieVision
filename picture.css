@@ -15,6 +15,14 @@ body {
     perspective: 1000px; /* Depth for 3D effect */
 }
 
+#panorama {
+    width: 300%;
+    height: 100vh;
+    background: url('dein-panorama-bild.jpg') repeat-x;
+    background-size: cover;
+    transform: translateX(0);
+}
+
 #image {
     position: absolute;
     top: 0;

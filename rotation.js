@@ -11,13 +11,7 @@ function permission() {
 
                         displayOrientationData(alpha, beta, gamma);
 
-                        // Wende die Drehung des Bildes basierend auf dem Alpha-Wert (Z-Achse) an
-                        if (alpha !== null) {
-                            // Drehe das Bild entlang der Y-Achse, sodass es wie ein Panorama aussieht
-                            // Die Rotation entlang der Y-Achse erzeugt den 3D-Effekt des "Umwickelns"
-                            let rotation = alpha; // Alpha gibt die Drehung um die Z-Achse (horizontal)
-                            document.getElementById('image').style.transform = 'translateX(-50%) rotateY(' + rotation + 'deg)';
-                        }
+                        rotate();
                     });
                 }
             })
@@ -27,6 +21,27 @@ function permission() {
     }
 }
 
+function rotate() {
+
+    let startOrientation = null;
+            let panorama = document.getElementById("panorama");
+            let imageWidth = panorama.offsetWidth; // Breite des Panoramabildes in Pixel
+
+            window.addEventListener("deviceorientation", (event) => {
+                if (startOrientation === null) {
+                    // Initiale Orientierung speichern
+                    startOrientation = event.alpha;
+                }
+                
+                // Die Rotationsänderung berechnen
+                let rotation = event.alpha - startOrientation;
+
+                // Die Panorama-Position berechnen (horizontal scrollen)
+                let scrollPosition = (rotation / 360) * imageWidth;
+                panorama.style.transform = `translateX(${-scrollPosition}px)`;
+            });
+}
+    
 const btn = document.getElementById("request");
 btn.addEventListener("click", permission);
 
