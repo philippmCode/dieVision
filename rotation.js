@@ -39,11 +39,11 @@ function rotate() {
                 // Die Rotationsänderung berechnen
                 let rotation = event.alpha - startOrientation;
 
-                displayOrientationData(rotation);                
+                dsplayRotationData(rotation);                
             });
 }
 
-function displayOrientationData(text) {
+function dsplayRotationData(text) {
     document.getElementById('rotation').innerText = text;
 }
 
