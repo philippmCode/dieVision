@@ -34,6 +34,7 @@ function permission() {
 
                         // Rotation anzeigen
                         displayRotationData(rotation);
+                        rotatePanorama(alpha, startOrientation);
                     });
                 }
             })
@@ -41,6 +42,19 @@ function permission() {
     } else {
         alert("DeviceMotionEvent is not defined");
     }
+}
+
+function rotatePanorama(alpha, startOrientation) {
+    const panorama = document.getElementById('panorama');
+
+    // Die Drehung berechnen
+    const rotation = alpha - startOrientation;
+
+    // Sicherstellen, dass die Rotation positiv bleibt
+    const correctedRotation = rotation < 0 ? rotation + 360 : rotation;
+
+    // Setze die Drehung des inneren Panoramas
+    panorama.style.transform = `rotate(${correctedRotation}deg)`;
 }
 
 function displayStartingPoint(start) {

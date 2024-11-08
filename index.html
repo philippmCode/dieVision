@@ -12,7 +12,6 @@
     <header>
         <h1>Zimmer</h1>
     </header>
-    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
 
 
     <!-- Button to enable Device Orientation (optional) -->
@@ -35,10 +34,9 @@
         <p>Rotation: <span id = "rotation">-</span></p>
     </section>
 
-    <section id="panorama-container">
-        <a-scene>
-            <a-sky src="Zimmer.jpeg" rotation="0 -130 0"></a-sky>
-        </a-scene>
+     <!-- Image container for the panorama -->
+    <section id="image-container">
+        <img id="panorama" src="Zimmer.jpeg" alt="360 Image">
     </section>
     
 
