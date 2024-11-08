@@ -42,3 +42,15 @@ header {
     width: 60vw;
     height: auto; 
 }
+
+#panorama-container {
+    width: 50vw; /* 50% der Breite des Viewports */
+    height: 50vh; /* 50% der Höhe des Viewports */
+    margin: 0 auto; /* Zentrieren */
+    position: relative;
+}
+
+a-scene {
+    width: 100%;
+    height: 100%;
+}
