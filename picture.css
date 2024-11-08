@@ -44,8 +44,8 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70vw;  /* 70% der Breite des Viewports */
-    height: 70vh;  /* 70% der Höhe des Viewports */
+    width: 50vw;  /* 70% der Breite des Viewports */
+    height: 50vh;  /* 70% der Höhe des Viewports */
     background-image: url('Zimmer.jpeg');
     background-size: cover;
     background-position: center;
