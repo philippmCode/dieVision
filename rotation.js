@@ -37,6 +37,7 @@ function rotate() {
             // Initiale Orientierung speichern
                 startOrientation = event.alpha;
         }
+        displayStartingPoint(startOrientation);
                 
         // Die Rotationsänderung berechnen
         let rotation = event.alpha - startOrientation;
@@ -49,6 +50,10 @@ function rotate() {
         // Rotation anzeigen
         displayRotationData(rotation);               
     });
+}
+
+function displayStartingPoint(start) {
+    document.getElementById('start').innerText = start !== null ? start.toFixed(2) : '-';
 }
 
 function displayRotationData(rotation) {
