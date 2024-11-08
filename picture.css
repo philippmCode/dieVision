@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    perspective: 1000px; /* Depth for 3D effect */
+}
+
+#image {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform-origin: center center;
+    height: 100%;
+    transition: transform 0.1s ease-out; /* Smooth transition for rotation */
+}
+
+#orientationData {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-size: 18px;
+}
