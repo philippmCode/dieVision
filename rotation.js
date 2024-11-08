@@ -26,25 +26,33 @@ function permission() {
 
 function rotate() {
 
+    displayRotationData("jetzt wird rotiert");
+
     let startOrientation = null;
-            let panorama = document.getElementById("panorama");
-            let imageWidth = panorama.offsetWidth; // Breite des Panoramabildes in Pixel
+    let panorama = document.getElementById("panorama");
+    let imageWidth = panorama.offsetWidth; // Breite des Panoramabildes in Pixel
 
-            window.addEventListener("deviceorientation", (event) => {
-                if (startOrientation === null) {
-                    // Initiale Orientierung speichern
-                    startOrientation = event.alpha;
-                }
+    window.addEventListener("deviceorientation", (event) => {
+        if (startOrientation === null) {
+            // Initiale Orientierung speichern
+                startOrientation = event.alpha;
+        }
                 
-                // Die Rotationsänderung berechnen
-                let rotation = event.alpha - startOrientation;
+        // Die Rotationsänderung berechnen
+        let rotation = event.alpha - startOrientation;
 
-                dsplayRotationData(rotation);                
-            });
+        // Sicherstellen, dass rotation positiv bleibt
+        if (rotation < 0) {
+            rotation += 360;
+        }
+
+        // Rotation anzeigen
+        displayRotationData(rotation);               
+    });
 }
 
-function dsplayRotationData(text) {
-    document.getElementById('rotation').innerText = text;
+function displayRotationData(rotation) {
+    document.getElementById('rotation').innerText = rotation !== null ? rotation.toFixed(2) : '-';
 }
 
 function displayOrientationData(alpha, beta, gamma) {
