@@ -6,15 +6,34 @@ function permission() {
         DeviceOrientationEvent.requestPermission()
             .then(response => {
                 if (response === "granted") {
-                    window.addEventListener("deviceorientation", (event) => {
-                        // Holen der Drehungswerte (Alpha, Beta, Gamma)
-                        let alpha = event.alpha;  // Drehung um die Z-Achse (Winkel auf der Oberfläche)
-                        let beta = event.beta;    // Drehung um die X-Achse (Neigung des Geräts)
-                        let gamma = event.gamma;  // Drehung um die Y-Achse (Neigung des Geräts)
+                    let startOrientation = null;
+                    let panorama = document.getElementById("panorama");
+                    let imageWidth = panorama.offsetWidth; // Breite des Panoramabildes in Pixel
 
+                    window.addEventListener("deviceorientation", (event) => {
+                        let alpha = event.alpha;  // Drehung um die Z-Achse
+                        let beta = event.beta;    // Neigung um die X-Achse
+                        let gamma = event.gamma;  // Neigung um die Y-Achse
+
+                        // Orientierungsdaten anzeigen
                         displayOrientationData(alpha, beta, gamma);
 
-                        rotate();
+                        // Initiale Orientierung setzen, wenn noch nicht gesetzt
+                        if (startOrientation === null) {
+                            startOrientation = alpha;
+                            displayStartingPoint(startOrientation);
+                        }
+                        
+                        // Berechnung der Rotationsänderung
+                        let rotation = alpha - startOrientation;
+
+                        // Sicherstellen, dass rotation positiv bleibt
+                        if (rotation < 0) {
+                            rotation += 360;
+                        }
+
+                        // Rotation anzeigen
+                        displayRotationData(rotation);
                     });
                 }
             })
@@ -22,34 +41,6 @@ function permission() {
     } else {
         alert("DeviceMotionEvent is not defined");
     }
-}
-
-function rotate() {
-
-    displayRotationData("jetzt wird rotiert");
-
-    let startOrientation = null;
-    let panorama = document.getElementById("panorama");
-    let imageWidth = panorama.offsetWidth; // Breite des Panoramabildes in Pixel
-
-    window.addEventListener("deviceorientation", (event) => {
-        if (startOrientation === null) {
-            // Initiale Orientierung speichern
-                startOrientation = event.alpha;
-        }
-        displayStartingPoint(startOrientation);
-                
-        // Die Rotationsänderung berechnen
-        let rotation = event.alpha - startOrientation;
-
-        // Sicherstellen, dass rotation positiv bleibt
-        if (rotation < 0) {
-            rotation += 360;
-        }
-
-        // Rotation anzeigen
-        displayRotationData(rotation);               
-    });
 }
 
 function displayStartingPoint(start) {
