@@ -15,8 +15,17 @@ header {
 }
 
 #orientation-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
     text-align: center;
     margin-top: 40px;
+}
+
+#rotationData {
+    position: fixed;
+    top: 100px;
+    left: 10px;
 }
 
 #orientationData {
