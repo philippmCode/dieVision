@@ -39,12 +39,13 @@ function rotate() {
                 // Die Rotationsänderung berechnen
                 let rotation = event.alpha - startOrientation;
 
-                // Die Panorama-Position berechnen (horizontal scrollen)
-                let scrollPosition = (rotation / 360) * imageWidth;
-                panorama.style.transform = `translateX(${-scrollPosition}px)`;
+                displayOrientationData(rotation);                
             });
 }
 
+function displayOrientationData(text) {
+    document.getElementById('rotation').innerText = text;
+}
 
 function displayOrientationData(alpha, beta, gamma) {
     document.getElementById('alpha').innerText = alpha !== null ? alpha.toFixed(2) : '-';

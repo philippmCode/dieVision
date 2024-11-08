@@ -26,7 +26,6 @@ header {
     color: white;
     font-size: 18px;
     z-index: 10; /* Damit es über dem Bild bleibt */
-    background: rgba(0, 0, 0, 0.5); /* Etwas Hintergrund, um Text sichtbar zu machen */
     padding: 10px;
     border-radius: 5px;
 }
