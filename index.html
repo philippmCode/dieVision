@@ -4,27 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>360 Image Viewer</title>
-
-    <link id="css" rel="stylesheet" type="text/css" href="picture.css">
-
+    <link rel="stylesheet" href="picture.css">
 </head>
 <body>
 
-    <h1>Zimmer</h1>
-    <button id="request">Enable Device Orientation</button>
+    <!-- Header (optional) -->
+    <header>
+        <h1>Zimmer</h1>
+    </header>
 
-    <!-- Area to show the Device Orientation data -->
-    <div id="orientationData">
+    <!-- Button to enable Device Orientation (optional) -->
+    <section id="orientation-button">
+        <button id="request">Enable Device Orientation</button>
+    </section>
+
+    <!-- Section to display orientation data (Alpha, Beta, Gamma) -->
+    <section id="orientationData">
         <p>Alpha: <span id="alpha">-</span></p>
         <p>Beta: <span id="beta">-</span></p>
         <p>Gamma: <span id="gamma">-</span></p>
-    </div>
+    </section>
 
-    <!-- Container for the image -->
-    <div id="image-container">
+    <!-- Image container for the panorama -->
+    <section id="image-container">
         <img id="panorama" src="Zimmer.jpeg" alt="360 Image">
-    </div>
-
+    </section>
 
     <script src="rotation.js"></script>
 </body>

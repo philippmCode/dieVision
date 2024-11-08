@@ -1,41 +1,45 @@
 * {
     margin: 0;
-    overflow: hidden;
-    height: 100vh;
-    background-color: #000;
+    padding: 0;
+    box-sizing: border-box; /* Verhindert, dass Padding und Border die Größe beeinflussen */
+}
+
+body, html {
+    height: 100%; /* Setzt die Höhe des Body und HTML auf 100% des Viewports */
+}
+
+header {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#orientation-button {
+    text-align: center;
+    margin-top: 40px;
+}
+
+#orientationData {
+    position: fixed; /* Stellt sicher, dass die Orientierung immer oben auf der Seite bleibt */
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-size: 18px;
+    z-index: 10; /* Damit es über dem Bild bleibt */
+    background: rgba(0, 0, 0, 0.5); /* Etwas Hintergrund, um Text sichtbar zu machen */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#image-container {
+    width: 100%;
+    height: 100vh; /* Das Bild soll den gesamten Bildschirm ausfüllen */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#image-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    perspective: 1000px; /* Depth for 3D effect */
-}
-
 #panorama {
-    width: 300%;
-    height: 100vh;
-    background: url('Zimmer.jpeg') repeat-x;
-    background-size: cover;
-    transform: translateX(0);
-}
-
-#image {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform-origin: center center;
-    height: 100%;
-    transition: transform 0.1s ease-out; /* Smooth transition for rotation */
-}
-
-#orientationData {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    color: white;
-    font-size: 18px;
+    width: 100%; /* Bild nimmt die volle Breite ein */
+    height: 100%; /* Bild nimmt die volle Höhe des Viewports ein */
+    object-fit: cover; /* Bild wird so skaliert, dass es den Container ausfüllt */
 }
