@@ -1,3 +1,6 @@
+const btn = document.getElementById("request");
+btn.addEventListener("click", permission);
+
 function permission() {
     if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
         DeviceOrientationEvent.requestPermission()
@@ -41,9 +44,7 @@ function rotate() {
                 panorama.style.transform = `translateX(${-scrollPosition}px)`;
             });
 }
-    
-const btn = document.getElementById("request");
-btn.addEventListener("click", permission);
+
 
 function displayOrientationData(alpha, beta, gamma) {
     document.getElementById('alpha').innerText = alpha !== null ? alpha.toFixed(2) : '-';

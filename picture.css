@@ -1,4 +1,4 @@
-body {
+* {
     margin: 0;
     overflow: hidden;
     height: 100vh;
@@ -18,7 +18,7 @@ body {
 #panorama {
     width: 300%;
     height: 100vh;
-    background: url('dein-panorama-bild.jpg') repeat-x;
+    background: url('Zimmer.jpeg') repeat-x;
     background-size: cover;
     transform: translateX(0);
 }
