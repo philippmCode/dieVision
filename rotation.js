@@ -7,8 +7,6 @@ function permission() {
             .then(response => {
                 if (response === "granted") {
                     let startOrientation = null;
-                    let panorama = document.getElementById("panorama");
-                    let imageWidth = panorama.offsetWidth; // Breite des Panoramabildes in Pixel
 
                     window.addEventListener("deviceorientation", (event) => {
                         let alpha = event.alpha;  // Drehung um die Z-Achse
