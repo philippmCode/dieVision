@@ -52,29 +52,15 @@ body, html {
 
 #container {
     background-color: blueviolet;
-    width: 300px;
-    height: 300px;
+    width: 60vw;
+    height: 60vh;
     grid-row: 3;
     grid-column: 2;
-    overflow: hidden;
 }
 
-.container img {
+#container img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: cover;
-}
-
-#panorama-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50vw;
-    height: 50vh;  
-    background-image: url('Zimmer.jpeg');
-    background-size: cover;
-    background-position: center;
-    perspective: 1000px;
+    object-fit: contain;
 }
 
