@@ -27,13 +27,13 @@ body, html {
 }
 
 #headerDiv {
-    color: aquamarine;
+    background-color: aquamarine;
     grid-column: 2;
     grid-row: 1;
 }
 
 #buttonDiv {
-    color: rgb(226, 43, 43);
+    background-color: navy;
     grid-column: 2;
     grid-row: 2;
 }
