@@ -9,28 +9,26 @@ function permission() {
                     let startOrientation = null;
 
                     window.addEventListener("deviceorientation", (event) => {
-                        let alpha = event.alpha;  // Drehung um die Z-Achse
-                        let beta = event.beta;    // Neigung um die X-Achse
-                        let gamma = event.gamma;  // Neigung um die Y-Achse
+                        let alpha = event.alpha;  // Z-axis
+                        let beta = event.beta;    // X-axis
+                        let gamma = event.gamma;  // Y-axis
 
-                        // Orientierungsdaten anzeigen
                         displayOrientationData(alpha, beta, gamma);
 
-                        // Initiale Orientierung setzen, wenn noch nicht gesetzt
+                        // initial orientation is set if not set already
                         if (startOrientation === null) {
                             startOrientation = alpha;
                             displayStartingPoint(startOrientation);
                         }
                         
-                        // Berechnung der Rotationsänderung
+                        // change of rotation
                         let rotation = alpha - startOrientation;
 
-                        // Sicherstellen, dass rotation positiv bleibt
+                        // rotation has to be positive
                         if (rotation < 0) {
                             rotation += 360;
                         }
 
-                        // Rotation anzeigen
                         displayRotationData(rotation);
                         rotatePanorama(alpha, startOrientation);
                     });
@@ -45,13 +43,12 @@ function permission() {
 function rotatePanorama(alpha, startOrientation) {
     const panorama = document.getElementById('panorama');
 
-    // Die Drehung berechnen
+    // calculating the rotation
     const rotation = alpha - startOrientation;
 
-    // Sicherstellen, dass die Rotation positiv bleibt
+    // rotation has to remian positive
     const correctedRotation = rotation < 0 ? rotation + 360 : rotation;
 
-    // Setze die Drehung des inneren Panoramas
     panorama.style.transform = `rotate(${correctedRotation}deg)`;
 }
 

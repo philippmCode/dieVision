@@ -1,29 +1,28 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Verhindert, dass Padding und Border die Größe beeinflussen */
+    box-sizing: border-box; /* prevents padding and border from influencing the size */
 }
 
 body, html {
-    height: 100%; /* Setzt die Höhe des Body und HTML auf 100% des Viewports */
-    /*background-color: gainsboro; */
+    height: 100%; /* of viewport  */
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Zwei gleich große Spalten */
-    grid-template-rows: repeat(3, auto); /* Drei Zeilen mit dynamischer Höhe */
-    gap: 10px; /* Fügt Abstand zwischen den Zellen hinzu */
-    width: 100%; /* Füllt die Breite aus */
-    margin: auto; /* Zentriert das Grid */
-    background-color: #e0e0e0; /* Hintergrundfarbe des Containers für bessere Sichtbarkeit */
-    padding: 10px; /* Abstand innerhalb des Grid-Containers */
+    grid-template-columns: 1fr 1fr 1fr; /* Three columns that are all the same size */
+    grid-template-rows: repeat(3, auto); /* Three rows with dynamic height */
+    gap: 10px; 
+    width: 100%; 
+    margin: auto; /* centers the grid */
+    background-color: #e0e0e0;
+    padding: 10px; /* distance in the container */
 }
 
 .grid-container > div {
     padding: 20px;
-    border: 2px solid #4CAF50; /* Grüne Linien um die Zellen */
-    box-sizing: border-box; /* Bezieht die Border in die Gesamtbreite der Zelle mit ein */
+    border: 2px solid #4CAF50; 
+    box-sizing: border-box; /* includes border in the width */
 }
 
 #headerDiv {
