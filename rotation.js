@@ -36,7 +36,7 @@ function permission() {
             })
             .catch(console.error);
     } else {
-        alert("DeviceMotionEvent is not defined");
+        alert("DeviceMotionEvent is not defined for this device.");
     }
 }
 
