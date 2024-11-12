@@ -30,7 +30,7 @@ function permission() {
                         }
 
                         displayRotationData(rotation);
-                        rotatePanorama(alpha, startOrientation);
+                        rotatePanorama(alpha);
                     });
                 }
             })
@@ -40,16 +40,24 @@ function permission() {
     }
 }
 
-function rotatePanorama(alpha, startOrientation) {
-    const panorama = document.getElementById('panorama');
+function rotatePanorama(alpha) {
+    
+    // Set the start point once (optional)
+    if (startAlpha === null) {
+        startAlpha = alpha;
+    }
 
-    // calculating the rotation
-    const rotation = alpha - startOrientation;
+    // Calculate rotation based on the initial start point
+    const rotation = (alpha - startAlpha + 360) % 360;
+    
+    // Display data for testing
+    alphaDisplay.textContent = rotation.toFixed(2);
 
-    // rotation has to remian positive
-    const correctedRotation = rotation < 0 ? rotation + 360 : rotation;
+    // Map rotation (0-360) to a suitable translateX range for the image
+    const translateX = -((rotation / 360) * 100); // Adjusts image scrolling
 
-    panorama.style.transform = `rotate(${correctedRotation}deg)`;
+    // Apply the calculated position
+    img.style.transform = `translateX(${translateX}%)`;
 }
 
 function displayStartingPoint(start) {
