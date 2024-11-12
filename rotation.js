@@ -36,28 +36,25 @@ function permission() {
             })
             .catch(console.error);
     } else {
-        alert("DeviceMotionEvent is not defined for this device.");
+        alert("DeviceMotionEvent is not defined for this device");
     }
 }
 
-function rotatePanorama(alpha) {
-    
-    // Set the start point once (optional)
+function rotatePanorama(event) {
+    let alpha = event.alpha;  // Z-axis (horizontal rotation)
+
+    // Initialize startAlpha on first rotation
     if (startAlpha === null) {
         startAlpha = alpha;
     }
 
-    // Calculate rotation based on the initial start point
-    const rotation = (alpha - startAlpha + 360) % 360;
-    
-    // Display data for testing
-    alphaDisplay.textContent = rotation.toFixed(2);
+    // Calculate the rotation relative to the starting point
+    let rotation = alpha - startAlpha;
+    if (rotation < 0) rotation += 360;
 
-    // Map rotation (0-360) to a suitable translateX range for the image
-    const translateX = -((rotation / 360) * 100); // Adjusts image scrolling
-
-    // Apply the calculated position
-    img.style.transform = `translateX(${translateX}%)`;
+    // Calculate the horizontal position based on the rotation
+    let translateX = -(rotation / 360) * image.width;
+    image.style.transform = `translateX(${translateX}px)`;
 }
 
 function displayStartingPoint(start) {
