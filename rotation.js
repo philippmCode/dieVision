@@ -40,21 +40,14 @@ function permission() {
     }
 }
 
-function rotatePanorama(event) {
-    let alpha = event.alpha;  // Z-axis (horizontal rotation)
+function rotatePanorama(alpha) {
+    if (startAlpha === null) startAlpha = alpha;
 
-    // Initialize startAlpha on first rotation
-    if (startAlpha === null) {
-        startAlpha = alpha;
-    }
+    const rotation = (alpha - startAlpha + 360) % 360;
+    alphaDisplay.textContent = rotation.toFixed(2);
 
-    // Calculate the rotation relative to the starting point
-    let rotation = alpha - startAlpha;
-    if (rotation < 0) rotation += 360;
-
-    // Calculate the horizontal position based on the rotation
-    let translateX = -(rotation / 360) * image.width;
-    image.style.transform = `translateX(${translateX}px)`;
+    const offsetX = -((rotation / 360) * (image.width - canvas.width));
+    drawImage(offsetX);
 }
 
 function displayStartingPoint(start) {
