@@ -32,7 +32,7 @@ function permission() {
                         displayRotationData(rotation);
                         // Berechnet die horizontale Verschiebung des Bildes. 
                         // Du kannst alpha von 0 bis 360 Grad auf einen Bereich von -50% bis 50% (z.B. für das Background-Position) abbilden.
-                        const shift = (alpha / 360) * 100;
+                        const shift = -(alpha / 360) * 100;
 
                         // Setzt die Hintergrundposition basierend auf der Drehung des Geräts
                         container.style.backgroundPositionX = `${shift}%`;
