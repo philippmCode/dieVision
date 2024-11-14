@@ -57,13 +57,15 @@ body, html {
     grid-column: 2;
     overflow: hidden;
     position: relative;
+
+    background-image: url('Zimmer.jpeg');   /* Hintergrundbild hinzufügen */
+    background-size: auto 100%;     /* Höhe des Bildes wird 100% des Containers, Breite bleibt proportional */
+    background-repeat: no-repeat;   /* Verhindert die Wiederholung des Hintergrunds */
+    background-position-x: 100%;     /* Bild horizontal zentrieren */
+    background-position-y: center; /* Bild vertikal zentrieren */
 }
 
 #image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: auto;
     height: 100%;
 }
 

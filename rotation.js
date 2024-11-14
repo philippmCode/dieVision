@@ -30,7 +30,12 @@ function permission() {
                         }
 
                         displayRotationData(rotation);
-                        rotatePanorama(alpha);
+                        // Berechnet die horizontale Verschiebung des Bildes. 
+                        // Du kannst alpha von 0 bis 360 Grad auf einen Bereich von -50% bis 50% (z.B. für das Background-Position) abbilden.
+                        const shift = (alpha / 360) * 100 - 50;  // alpha von 0 bis 360 wird in Prozent (-50% bis 50%) umgerechnet
+
+                        // Setzt die Hintergrundposition basierend auf der Drehung des Geräts
+                        container.style.backgroundPositionX = `${shift}%`;
                     });
                 }
             })
@@ -38,16 +43,6 @@ function permission() {
     } else {
         alert("DeviceMotionEvent is not defined for this device");
     }
-}
-
-function rotatePanorama(alpha) {
-    if (startAlpha === null) startAlpha = alpha;
-
-    const rotation = (alpha - startAlpha + 360) % 360;
-    alphaDisplay.textContent = rotation.toFixed(2);
-
-    const offsetX = -((rotation / 360) * (image.width - canvas.width));
-    drawImage(offsetX);
 }
 
 function displayStartingPoint(start) {
