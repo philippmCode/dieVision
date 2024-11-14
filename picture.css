@@ -50,7 +50,6 @@ body, html {
 }
 
 #container {
-    background-color: blueviolet;
     width: 60vw;
     height: 60vh;
     grid-row: 3;
