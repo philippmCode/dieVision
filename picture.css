@@ -51,13 +51,13 @@ body, html {
 
 #container {
     width: 60vw;
-    height: 60vh;
+    height: 50vh;
     grid-row: 3;
     grid-column: 2;
     overflow: hidden;
     position: relative;
 
-    background-image: url('Zimmer.jpeg');   /* Hintergrundbild hinzufügen */
+    background-image: url('Zimmer.jpeg'), url('Zimmer.jpeg');   /* Hintergrundbild hinzufügen */
     background-size: auto 100%;     /* Höhe des Bildes wird 100% des Containers, Breite bleibt proportional */
     background-repeat: no-repeat;   /* Verhindert die Wiederholung des Hintergrunds */
     background-position-x: 0%;     /* Bild horizontal zentrieren */
