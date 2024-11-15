@@ -35,7 +35,7 @@ function permission() {
                         const shift = -(alpha / 360) * 200;
 
                         // Setzt die Hintergrundposition basierend auf der Drehung des Geräts
-                        container.style.backgroundPositionX = `${shift % 100}%`;
+                        container.style.backgroundPositionX = `${shift}%`;
                     });
                 }
             })
