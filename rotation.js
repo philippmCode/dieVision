@@ -9,9 +9,9 @@ function permission() {
                     let startOrientation = null;
 
                     window.addEventListener("deviceorientation", (event) => {
-                        let alpha = event.alpha;  // Z-axis
-                        let beta = event.beta;    // X-axis
-                        let gamma = event.gamma;  // Y-axis
+                        let alpha = event.alpha;
+                        let beta = event.beta;    
+                        let gamma = event.gamma;
 
                         displayOrientationData(alpha, beta, gamma);
 
