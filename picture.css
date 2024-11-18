@@ -59,7 +59,7 @@ body, html {
  
     background-size: auto 100%;     /* height of the picture is set to 100% of the container, width is proportional*/
     background-repeat: repeat-x;  
-    background-position-x: 0%;
+    background-position-x: 50%;
     background-position-y: center;
 }
 
