@@ -33,7 +33,7 @@ function permission() {
                         // calculates the horizontal shift in percent based on the rotation
                         const shift = (rotation / 360) * 100;
 
-                        // Setzt die Hintergrundposition basierend auf der Drehung des Geräts
+                        // adjusts the background position
                         container.style.backgroundPositionX = `${-shift}%`;
                     });
                 }
@@ -43,6 +43,26 @@ function permission() {
         alert("DeviceMotionEvent is not defined for this device");
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // container whose background image we want to set
+    const container = document.getElementById("spaceContainer");
+
+    // api key gets inserted in the request url
+    const apiKey = 'IObSXih5k3lG7dSsjcj10QGQhmhnA2lRR9dDeFfl';
+    const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        const imageUrl = data.url;
+        container.style.backgroundImage = `url(${imageUrl})`;
+    })
+    .catch(error => {
+        console.error('Error while loading the image:', error);
+    });
+});
 
 function displayStartingPoint(start) {
     document.getElementById('start').innerText = start !== null ? start.toFixed(2) : '-';
