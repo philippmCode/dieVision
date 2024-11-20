@@ -81,3 +81,23 @@ body, html {
     left: 20px;
     z-index: 10;
 }
+
+.thumbnail-box {
+    border: 2px solid #0f0202; /* Umrandung für den Kasten */
+    border-radius: 10px;     /* Abgerundete Ecken */
+    overflow: hidden;        /* Verhindert, dass das Bild aus dem Kasten herausragt */
+    text-align: left;      /* Zentriert den Text */
+    width: 20vw;
+    height: 15vh;
+}
+
+.thumbnail-picture {
+    display: block;
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+}
+
+.thumbnail.text {
+    display: block;
+}
