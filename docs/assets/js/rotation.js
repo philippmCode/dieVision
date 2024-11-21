@@ -35,6 +35,12 @@ function permission() {
 
                         // adjusts the background position
                         container.style.backgroundPositionX = `${-shift}%`;
+
+                        let backgroundPositionX = parseFloat(window.getComputedStyle(container).backgroundPositionX);
+
+                        // Berechne den Prozentsatz des Bildes, das sichtbar ist
+                        let visiblePercentage = Math.abs(backgroundPositionX);
+                        displayPosition(visiblePercentage);
                     });
                 }
             })
@@ -66,6 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function displayStartingPoint(start) {
     document.getElementById('start').innerText = start !== null ? start.toFixed(2) : '-';
+}
+
+function displayPosition(position) {
+    document.getElementById('position').innerText = position !== null ? start.toFixed(2) : '-';
 }
 
 function displayRotationData(rotation) {
