@@ -55,6 +55,7 @@ body, html {
     grid-column: 2;
     width: 60vw;
     height: 50vh;
+    object-fit: cover;
 }
 
 #container {
