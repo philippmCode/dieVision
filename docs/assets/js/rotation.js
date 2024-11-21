@@ -24,11 +24,6 @@ function permission() {
                         // change of rotation
                         let rotation = alpha - startOrientation;
 
-                        // rotation has to be positive
-                        if (rotation < 0) {
-                            rotation += 360;
-                        }
-
                         displayRotationData(rotation);
                         // calculates the horizontal shift in percent based on the rotation
                         const shift = (rotation / 360) * 100;
