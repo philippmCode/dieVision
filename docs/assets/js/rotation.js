@@ -6,43 +6,50 @@ function permission() {
         DeviceOrientationEvent.requestPermission()
             .then(response => {
                 if (response === "granted") {
-                    let startOrientation = null;
-
+                    let startOrientation = null; // Anfangswinkel
+                    let lastAlpha = null;       // Letzte bekannte Alpha-Position
+                    let shift = 0;              // Akkumulierter Shift in %
+    
                     window.addEventListener("deviceorientation", (event) => {
-                        let alpha = event.alpha;
-                        let beta = event.beta;    
-                        let gamma = event.gamma;
-
-                        displayOrientationData(alpha, beta, gamma);
-
-                        // initial orientation is set if not set already
+                        const alpha = event.alpha; // Aktueller Winkel in Grad
+    
                         if (startOrientation === null) {
+                            // Initiale Orientierung setzen
                             startOrientation = alpha;
-                            displayStartingPoint(startOrientation);
+                            lastAlpha = alpha; // Erste Alpha-Position speichern
+                            displayStartingPoint(startOrientation); // Debugging
                         }
-                        
-                        // change of rotation
-                        let rotation = alpha - startOrientation;
-
-                        displayRotationData(rotation);
-                        // calculates the horizontal shift in percent based on the rotation
-                        const shift = (rotation / 360) * 100;
-
-                        // adjusts the background position
-                        container.style.backgroundPositionX = `${-shift}%`;
-
-                        let backgroundPositionX = parseFloat(window.getComputedStyle(container).backgroundPositionX);
-
-                        // Berechne den Prozentsatz des Bildes, das sichtbar ist
-                        let visiblePercentage = Math.abs(backgroundPositionX);
-                        displayPosition(visiblePercentage);
+    
+                        if (lastAlpha !== null) {
+                            // Differenz zwischen aktuellem und vorherigem Winkel berechnen
+                            let delta = alpha - lastAlpha;
+    
+                            // Übergang an der 360°/0°-Grenze korrigieren
+                            if (delta > 180) {
+                                delta -= 360;
+                            } else if (delta < -180) {
+                                delta += 360;
+                            }
+    
+                            // Akkumulierter Shift (in Prozent der Bildbreite)
+                            shift += (delta / 360) * 100;
+    
+                            // Hintergrundposition anpassen
+                            container.style.backgroundPositionX = `${-shift}%`;
+    
+                            // Debugging/Anzeige
+                            displayRotationData(shift);
+                        }
+    
+                        lastAlpha = alpha; // Alpha-Wert für das nächste Event speichern
                     });
                 }
             })
             .catch(console.error);
     } else {
-        alert("DeviceMotionEvent is not defined for this device");
+        alert("DeviceOrientationEvent is not defined for this device");
     }
+    
 }
 
 document.addEventListener("DOMContentLoaded", () => {
