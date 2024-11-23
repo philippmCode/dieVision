@@ -38,7 +38,7 @@ function permission() {
                             shift += (delta / 360) * 100;
     
                             // picture gets only adjusted if device held correctly
-                            if (Math.abs(beta) < 10 && (90 - Math.abs(gamma)) < 10) {
+                            if (Math.abs(beta) < 40 && (90 - Math.abs(gamma)) < 40) {
                                 container.style.backgroundPositionX = `${-shift}%`;
                             }
     
