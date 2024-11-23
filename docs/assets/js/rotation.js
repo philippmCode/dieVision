@@ -1,4 +1,4 @@
-const btn = document.getElementById("request");
+const btn = document.getElementById("requestButton");
 btn.addEventListener("click", permission);
 
 function permission() {

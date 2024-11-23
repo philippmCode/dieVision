@@ -70,13 +70,9 @@ body, html {
     height: 100%;
 }
 
-#buttonDiv {
-    background-color: navy;
+#requestButton {
+    padding: 15px 30px;
     grid-column: 1;
     grid-row: 1;
-}
-
-#requestButton {
-
 }
 
