@@ -6,9 +6,9 @@ function permission() {
         DeviceOrientationEvent.requestPermission()
             .then(response => {
                 if (response === "granted") {
-                    let startOrientation = null; // Anfangswinkel
-                    let lastAlpha = null;       // Letzte bekannte Alpha-Position
-                    let shift = -50;              // Akkumulierter Shift in %
+                    let startOrientation = null;
+                    let lastAlpha = null;       
+                    let shift = -50;    //starting position
     
                     window.addEventListener("deviceorientation", (event) => {
                         
@@ -17,10 +17,9 @@ function permission() {
                         const gamma = event.gamma;
     
                         if (startOrientation === null) {
-                            // Initiale Orientierung setzen
                             startOrientation = alpha;
-                            lastAlpha = alpha; // Erste Alpha-Position speichern
-                            displayStartingPoint(startOrientation); // Debugging
+                            lastAlpha = alpha; 
+                            displayStartingPoint(startOrientation);
                         }
     
                         if (lastAlpha !== null) {
@@ -34,11 +33,11 @@ function permission() {
                                 delta += 360;
                             }
     
-                            // Akkumulierter Shift (in Prozent der Bildbreite)
+                            // shift in %
                             shift += (delta / 360) * 100;
     
                             // picture gets only adjusted if device held correctly
-                            if (Math.abs(beta) < 40 && (90 - Math.abs(gamma)) < 40) {
+                            if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
                                 container.style.backgroundPositionX = `${-shift}%`;
                             }
     
@@ -47,7 +46,7 @@ function permission() {
                             displayOrientationData(alpha, beta, gamma);
                         }
     
-                        lastAlpha = alpha; // Alpha-Wert für das nächste Event speichern
+                        lastAlpha = alpha; // store alpha value for next event
                     });
                 }
             })

@@ -1,0 +1,66 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Three columns that are all the same size */
+    grid-template-rows: repeat(3, auto); /* Three rows with dynamic height */
+    gap: 10px; 
+    width: 100%; 
+    margin: auto; /* centers the grid */
+    background-color: #e0e0e0;
+    padding: 10px; /* distance in the container */
+}
+
+.grid-container > div {
+    padding: 20px;
+    border: 2px solid #4CAF50; 
+    box-sizing: border-box; /* includes border in the width */
+}
+
+#headerDiv {
+    background-color: aquamarine;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#destination-box {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#buttonDiv {
+    background-color: navy;
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#thumbnail-container {
+    grid-row: 3;
+    grid-column: 2;
+    width: 70vw;
+    height: 70vh;
+
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px;
+    row-gap: 20px;
+    justify-content: flex-start; 
+}
+
+.thumbnail-box {
+    border: 2px solid #0f0202; /* Umrandung für den Kasten */
+    border-radius: 10px;     /* Abgerundete Ecken */
+    overflow: hidden;        /* Verhindert, dass das Bild aus dem Kasten herausragt */
+    text-align: left;      /* Zentriert den Text */
+    width: 20vw;
+    height: 15vh;
+}
+
+.thumbnail-picture {
+    display: block;
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+}
+
+.thumbnail.text {
+    display: block;
+}
