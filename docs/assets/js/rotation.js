@@ -8,7 +8,7 @@ function permission() {
                 if (response === "granted") {
                     let startOrientation = null; // Anfangswinkel
                     let lastAlpha = null;       // Letzte bekannte Alpha-Position
-                    let shift = 50;              // Akkumulierter Shift in %
+                    let shift = -50;              // Akkumulierter Shift in %
     
                     window.addEventListener("deviceorientation", (event) => {
                         const alpha = event.alpha; // Aktueller Winkel in Grad
