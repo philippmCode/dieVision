@@ -11,7 +11,10 @@ function permission() {
                     let shift = -50;              // Akkumulierter Shift in %
     
                     window.addEventListener("deviceorientation", (event) => {
-                        const alpha = event.alpha; // Aktueller Winkel in Grad
+                        
+                        const alpha = event.alpha; 
+                        const beta = event.beta;
+                        const gamma = event.gamma;
     
                         if (startOrientation === null) {
                             // Initiale Orientierung setzen
@@ -34,11 +37,14 @@ function permission() {
                             // Akkumulierter Shift (in Prozent der Bildbreite)
                             shift += (delta / 360) * 100;
     
-                            // Hintergrundposition anpassen
-                            container.style.backgroundPositionX = `${-shift}%`;
+                            // picture gets only adjusted if device held correctly
+                            if (Math.abs(beta) < 10 && Math.abs(gamma) < 10) {
+                                container.style.backgroundPositionX = `${-shift}%`;
+                            }
     
                             // Debugging/Anzeige
                             displayRotationData(shift);
+                            displayOrientationData(alpha, beta, gamma);
                         }
     
                         lastAlpha = alpha; // Alpha-Wert für das nächste Event speichern
