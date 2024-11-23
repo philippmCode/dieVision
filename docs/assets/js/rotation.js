@@ -1,19 +1,18 @@
 const btn = document.getElementById("requestButton");
-btn.addEventListener("click", permission);
+btn.addEventListener("click", rotate);
 
 //when loading the page
 document.addEventListener('DOMContentLoaded', function() {
-    checkDeviceOrientationPermission();
+    permission();
 })
 
-function checkDeviceOrientationPermission() {
+function permission() {
     
     if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
         // Überprüfen, ob die Berechtigung schon erteilt wurde
         DeviceOrientationEvent.requestPermission().then(function(response) {
             if (response === 'granted') {
-                console.log('Berechtigung erteilt!');
-                // Führe hier den Code aus, der DeviceOrientation verwendet
+                rotate();
             } else {
                 alert('Without the permission you wont be able to get the full experience!');
             }
@@ -26,9 +25,8 @@ function checkDeviceOrientationPermission() {
 }
 
 
-function permission() {
+function rotate() {
     
-
     let startOrientation = null;
     let lastAlpha = null;       
     let shift = -50;    //starting position
