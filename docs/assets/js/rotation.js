@@ -24,10 +24,10 @@ function permission() {
                         }
     
                         if (lastAlpha !== null) {
-                            // Differenz zwischen aktuellem und vorherigem Winkel berechnen
+                            
                             let delta = alpha - lastAlpha;
     
-                            // Übergang an der 360°/0°-Grenze korrigieren
+                            // transition at 360°/0°-border
                             if (delta > 180) {
                                 delta -= 360;
                             } else if (delta < -180) {
@@ -38,7 +38,7 @@ function permission() {
                             shift += (delta / 360) * 100;
     
                             // picture gets only adjusted if device held correctly
-                            if (Math.abs(beta) < 10 && Math.abs(gamma) < 10) {
+                            if (Math.abs(beta) < 10 && (90 - Math.abs(gamma)) < 10) {
                                 container.style.backgroundPositionX = `${-shift}%`;
                             }
     
