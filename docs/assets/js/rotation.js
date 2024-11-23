@@ -1,74 +1,60 @@
 const btn = document.getElementById("requestButton");
-btn.addEventListener("click", rotate);
-
-//when loading the page
-document.addEventListener('DOMContentLoaded', function() {
-    permission();
-})
+btn.addEventListener("click", permission);
 
 function permission() {
-    
     if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
-        // Überprüfen, ob die Berechtigung schon erteilt wurde
-        DeviceOrientationEvent.requestPermission().then(function(response) {
-            if (response === 'granted') {
-                rotate();
-            } else {
-                alert('Without the permission you wont be able to get the full experience!');
-            }
-        }).catch(function(error) {
-            alert('Error while requesting permission:', error);
-        });
+        DeviceOrientationEvent.requestPermission()
+            .then(response => {
+                if (response === "granted") {
+                    let startOrientation = null;
+                    let lastAlpha = null;       
+                    let shift = -50;    //starting position
+    
+                    window.addEventListener("deviceorientation", (event) => {
+                        
+                        const alpha = event.alpha; 
+                        const beta = event.beta;
+                        const gamma = event.gamma;
+    
+                        if (startOrientation === null) {
+                            startOrientation = alpha;
+                            lastAlpha = alpha; 
+                            displayStartingPoint(startOrientation);
+                        }
+    
+                        if (lastAlpha !== null) {
+                            
+                            let delta = alpha - lastAlpha;
+    
+                            // transition at 360°/0°-border
+                            if (delta > 180) {
+                                delta -= 360;
+                            } else if (delta < -180) {
+                                delta += 360;
+                            }
+    
+                            // shift in %
+                            shift += (delta / 360) * 100;
+    
+                            // picture gets only adjusted if device held correctly
+                            if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
+                                container.style.backgroundPositionX = `${-shift}%`;
+                            }
+    
+                            // Debugging/Anzeige
+                            displayRotationData(shift);
+                            displayOrientationData(alpha, beta, gamma);
+                        }
+    
+                        lastAlpha = alpha; // store alpha value for next event
+                    });
+                }
+            })
+            .catch(console.error);
     } else {
         alert("DeviceOrientationEvent is not defined for this device");
     }
-}
-
-
-function rotate() {
     
-    let startOrientation = null;
-    let lastAlpha = null;       
-    let shift = -50;    //starting position
-    
-    window.addEventListener("deviceorientation", (event) => {
-                        
-    const alpha = event.alpha; 
-    const beta = event.beta;
-    const gamma = event.gamma;
-    
-    if (startOrientation === null) {
-        startOrientation = alpha;
-        lastAlpha = alpha; 
-        displayStartingPoint(startOrientation);
-    }
-    
-    if (lastAlpha !== null) {
-                            
-        let delta = alpha - lastAlpha;
-    
-        // transition at 360°/0°-border
-        if (delta > 180) {
-            delta -= 360;
-        } else if (delta < -180) {
-            delta += 360;
-        }
-    
-        // shift in %
-        shift += (delta / 360) * 100;
-    
-        // picture gets only adjusted if device held correctly
-        if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
-            container.style.backgroundPositionX = `${-shift}%`;
-        }
-    
-        // Debugging/Anzeige
-        displayRotationData(shift);
-        displayOrientationData(alpha, beta, gamma);
-    }
-    
-    lastAlpha = alpha; // store alpha value for next event
-    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
