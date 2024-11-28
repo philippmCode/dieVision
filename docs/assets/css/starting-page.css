@@ -10,7 +10,6 @@ body {
     width: 100%; 
     margin: auto; /* centers the grid */
     padding: 10px; /* distance in the container */
-    background-color: gainsboro;
 }
 
 .grid-container > div {
@@ -41,17 +40,23 @@ body {
     display: flex;
     flex-wrap: wrap; 
     gap: 10px;
-    row-gap: 20px;
-    justify-content: flex-start; 
+    row-gap: 40px;
+    justify-content: flex-start;
+    align-content: flex-start;
 }
 
 .thumbnail-box {
-    border: 2px solid #0f0202; /* Umrandung für den Kasten */
+    border: 2px solid #0f0202;
+    background-color: white;
     border-radius: 10px;     /* Abgerundete Ecken */
     overflow: hidden;        /* Verhindert, dass das Bild aus dem Kasten herausragt */
     text-align: left;      /* Zentriert den Text */
     width: 20vw;
-    height: 15vh;
+    height: 20vh;
+}
+
+.thumbnail-box:hover {
+    transform: scale(1.03); /* mages the box larger */
 }
 
 .thumbnail-picture {
@@ -61,6 +66,7 @@ body {
     object-fit: cover;
 }
 
-.thumbnail.text {
+.thumbnail-text {
+    border-top: 2px solid #0f0202;
     display: block;
 }
