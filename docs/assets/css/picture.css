@@ -71,10 +71,16 @@ body, html {
     height: 100%;
 }
 
-#requestButton {
+#device-orientation-button {
     padding: 15px 30px;
     grid-column: 1;
     grid-row: 1;
+}
+
+#location-button {
+    padding: 15px 30px;
+    grid-column: 1;
+    grid-row: 2;
 }
 
 #fullscreen-btn {

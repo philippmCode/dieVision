@@ -1,4 +1,4 @@
-const btn = document.getElementById("requestButton");
+const btn = document.getElementById("device-orientation-button");
 btn.addEventListener("click", permission);
 
 function permission() {
@@ -57,55 +57,71 @@ function permission() {
     
 }
 
+const locationBtn = document.getElementById("location-button");
+locationBtn.addEventListener("click", getUserLocation);
+
+// Orte und deren Koordinaten
+const locationMap = new Map([
+  ["Berlin", { lat: 52.5200, lon: 13.4050 }],
+  ["München", { lat: 48.1351, lon: 11.5820 }],
+  ["Hamburg", { lat: 53.5511, lon: 9.9937 }]
+]);
+
+// Funktion, um die Position des Nutzers zu holen
 function getUserLocation() {
-    if (navigator.geolocation) {
-      // requesting Geolocation
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          console.log(`Standort des Benutzers: Latitude: ${lat}, Longitude: ${lon}`);
-          // calculate the distance
-          getStreetDistance(lat, lon);
-        },
-        (error) => {
-          console.error("Fehler beim Abrufen des Standorts: ", error);
-        }
-      );
-    } else {
-      console.log("Geolocation wird von diesem Browser nicht unterstützt.");
-    }
-  }
-  
-  async function getStreetDistance(userLat, userLon) {
-    const apiKey = '5b3ce3597851110001cf624870ac6064badc44ada9975b1ed44447c9';
-  
-    const startCoords = [userLon, userLat];  // Benutzerkoordinaten (Längengrad, Breitengrad)
-    const endCoords = [2.3522, 48.8566];    // Beispielziel (Paris)
-  
-    const url = `https://api.openrouteservice.org/v2/directions/driving-car?start=${startCoords.join(',')}&end=${endCoords.join(',')}`;
-  
-    const options = {
-      method: 'GET',
-      headers: {
-        'Authorization': apiKey,
-        'Content-Type': 'application/json',
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userLat = position.coords.latitude;
+        const userLon = position.coords.longitude;
+
+        displayLocation(userLat, userLon);
+        displayDistances(userLat, userLon); // Distanzen zu allen Orten berechnen
       },
-    };
-  
-    try {
-      const response = await fetch(url, options);
-      if (response.ok) {
-        const data = await response.json();
-        const distance = data.routes[0].summary.distance / 1000;  // in kilometers
-        console.log(`Straßendistanz: ${distance.toFixed(2)} km`);
-      } else {
-        console.error('Fehler beim Abrufen der Route:', response.status, response.statusText);
+      (error) => {
+        console.error("Fehler beim Abrufen des Standorts: ", error);
       }
-    } catch (error) {
-      console.error('Fehler beim Abrufen der Daten:', error);
-    }
+    );
+  } else {
+    console.log("Geolocation wird von diesem Browser nicht unterstützt.");
   }
+}
+
+// Zeigt den Standort des Nutzers auf der Seite an
+function displayLocation(lat, lon) {
+  const locationElement = document.getElementById("location");
+  locationElement.innerText = `Ihr Standort: Latitude ${lat.toFixed(4)}, Longitude ${lon.toFixed(4)}`;
+}
+
+// Berechnet die Entfernung zwischen zwei Koordinaten (Haversine-Formel)
+function calculateDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Erdradius in Kilometern
+  const toRadians = (degrees) => degrees * (Math.PI / 180);
+
+  const dLat = toRadians(lat2 - lat1);
+  const dLon = toRadians(lon2 - lon1);
+
+  const a = Math.sin(dLat / 2) ** 2 +
+            Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+            Math.sin(dLon / 2) ** 2;
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c;
+
+  return distance; // Entfernung in Kilometern
+}
+
+function displayDistances(userLat, userLon) {
+  const distanceElement = document.getElementById("distance");
+  distanceElement.innerHTML = ''; // Liste zurücksetzen
+
+  locationMap.forEach((coords, name) => {
+    const distance = calculateDistance(userLat, userLon, coords.lat, coords.lon);
+    const listItem = document.createElement("p");
+    listItem.textContent = `Entfernung zu ${name}: ${distance.toFixed(2)} km`;
+    distanceElement.appendChild(listItem); // Distanz zur Anzeige hinzufügen
+  });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -170,3 +186,15 @@ function displayOrientationData(alpha, beta, gamma) {
     document.getElementById('beta').innerText = beta !== null ? beta.toFixed(2) : '-';
     document.getElementById('gamma').innerText = gamma !== null ? gamma.toFixed(2) : '-';
 }
+
+function displayLocation(lat, lon) {
+  const locationElement = document.getElementById('location');
+  
+  if (locationElement) {
+    locationElement.innerText = 
+      lat !== null && lon !== null 
+        ? `Standort des Benutzers: Latitude: ${lat.toFixed(2)}, Longitude: ${lon.toFixed(2)}`
+        : 'Standortinformationen sind nicht verfügbar.';
+  }
+}
+
