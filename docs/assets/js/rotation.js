@@ -57,6 +57,56 @@ function permission() {
     
 }
 
+function getUserLocation() {
+    if (navigator.geolocation) {
+      // requesting Geolocation
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          console.log(`Standort des Benutzers: Latitude: ${lat}, Longitude: ${lon}`);
+          // calculate the distance
+          getStreetDistance(lat, lon);
+        },
+        (error) => {
+          console.error("Fehler beim Abrufen des Standorts: ", error);
+        }
+      );
+    } else {
+      console.log("Geolocation wird von diesem Browser nicht unterstützt.");
+    }
+  }
+  
+  async function getStreetDistance(userLat, userLon) {
+    const apiKey = '5b3ce3597851110001cf624870ac6064badc44ada9975b1ed44447c9';
+  
+    const startCoords = [userLon, userLat];  // Benutzerkoordinaten (Längengrad, Breitengrad)
+    const endCoords = [2.3522, 48.8566];    // Beispielziel (Paris)
+  
+    const url = `https://api.openrouteservice.org/v2/directions/driving-car?start=${startCoords.join(',')}&end=${endCoords.join(',')}`;
+  
+    const options = {
+      method: 'GET',
+      headers: {
+        'Authorization': apiKey,
+        'Content-Type': 'application/json',
+      },
+    };
+  
+    try {
+      const response = await fetch(url, options);
+      if (response.ok) {
+        const data = await response.json();
+        const distance = data.routes[0].summary.distance / 1000;  // in kilometers
+        console.log(`Straßendistanz: ${distance.toFixed(2)} km`);
+      } else {
+        console.error('Fehler beim Abrufen der Route:', response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('Fehler beim Abrufen der Daten:', error);
+    }
+  }
+
 document.addEventListener("DOMContentLoaded", () => {
     
     // container whose background image we want to set
