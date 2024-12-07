@@ -62,9 +62,10 @@ locationBtn.addEventListener("click", getUserLocation);
 
 // Orte und deren Koordinaten
 const locationMap = new Map([
-  ["Berlin", { lat: 52.5200, lon: 13.4050 }],
-  ["München", { lat: 48.1351, lon: 11.5820 }],
-  ["Hamburg", { lat: 53.5511, lon: 9.9937 }]
+  ["vancouver", { lat: 49.246292, lon: -123.116226 }],
+  ["atacama-desert", { lat: -23.863213, lon: -69.141754 }],
+  ["bad-wildbad", { lat: 48.750244, lon: 8.550301 }],
+  ["starry-sky", { lat:  -24.6230, lon: -70.4025 }]
 ]);
 
 // Funktion, um die Position des Nutzers zu holen
@@ -76,7 +77,7 @@ function getUserLocation() {
         const userLon = position.coords.longitude;
 
         displayLocation(userLat, userLon);
-        displayDistances(userLat, userLon); // Distanzen zu allen Orten berechnen
+        calculateDistanceForCurrentPage(userLat, userLon);
       },
       (error) => {
         console.error("Fehler beim Abrufen des Standorts: ", error);
@@ -87,15 +88,42 @@ function getUserLocation() {
   }
 }
 
-// Zeigt den Standort des Nutzers auf der Seite an
-function displayLocation(lat, lon) {
-  const locationElement = document.getElementById("location");
-  locationElement.innerText = `Ihr Standort: Latitude ${lat.toFixed(4)}, Longitude ${lon.toFixed(4)}`;
+function getCurrentPageName() {
+  const url = window.location.href;  // Holt die vollständige URL der Seite
+  const pathParts = url.split("/");  // Teilt die URL anhand des "/"
+  
+  // Hier nehmen wir den letzten Teil der URL als den aktuellen Ort an
+  let currentPage = pathParts[pathParts.length - 1].toLowerCase(); // Der Name des Ortes in Kleinbuchstaben
+  currentPage = currentPage.replace(".html", "");
+
+  return currentPage;
 }
 
-// Berechnet die Entfernung zwischen zwei Koordinaten (Haversine-Formel)
+function displayLocation(lat, lon) {
+  const locationElement = document.getElementById("location");
+  locationElement.innerHTML = `Your location: <br> Latitude: ${lat.toFixed(4)} <br> Longitude: ${lon.toFixed(4)}`;
+}
+
+
+function calculateDistanceForCurrentPage(userLat, userLon) {
+  const currentPage = getCurrentPageName();  // Extrahiert den Namen des Ortes von der URL
+
+  if (locationMap.has(currentPage)) {  // Wenn der Ort in der Map existiert
+    const destinationCoords = locationMap.get(currentPage);  // Holt die Koordinaten des Ortes
+    const distance = calculateDistance(userLat, userLon, destinationCoords.lat, destinationCoords.lon);  // Berechnet die Distanz
+
+    // Zeigt die Distanz auf der Seite an
+    const distanceElement = document.getElementById("distance");
+    distanceElement.innerHTML = `<br>Distance to ${currentPage}: ${distance.toFixed(2)} km`;
+  } else {
+    distanceElement.innerText = `You can't travel there (yet)...`;
+  }
+}
+
+// haversine Formula
 function calculateDistance(lat1, lon1, lat2, lon2) {
-  const R = 6371; // Erdradius in Kilometern
+
+  const R = 6371; // earth radius
   const toRadians = (degrees) => degrees * (Math.PI / 180);
 
   const dLat = toRadians(lat2 - lat1);
@@ -108,19 +136,7 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const distance = R * c;
 
-  return distance; // Entfernung in Kilometern
-}
-
-function displayDistances(userLat, userLon) {
-  const distanceElement = document.getElementById("distance");
-  distanceElement.innerHTML = ''; // Liste zurücksetzen
-
-  locationMap.forEach((coords, name) => {
-    const distance = calculateDistance(userLat, userLon, coords.lat, coords.lon);
-    const listItem = document.createElement("p");
-    listItem.textContent = `Entfernung zu ${name}: ${distance.toFixed(2)} km`;
-    distanceElement.appendChild(listItem); // Distanz zur Anzeige hinzufügen
-  });
+  return distance; // distance in km
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -185,16 +201,5 @@ function displayOrientationData(alpha, beta, gamma) {
     document.getElementById('alpha').innerText = alpha !== null ? alpha.toFixed(2) : '-';
     document.getElementById('beta').innerText = beta !== null ? beta.toFixed(2) : '-';
     document.getElementById('gamma').innerText = gamma !== null ? gamma.toFixed(2) : '-';
-}
-
-function displayLocation(lat, lon) {
-  const locationElement = document.getElementById('location');
-  
-  if (locationElement) {
-    locationElement.innerText = 
-      lat !== null && lon !== null 
-        ? `Standort des Benutzers: Latitude: ${lat.toFixed(2)}, Longitude: ${lon.toFixed(2)}`
-        : 'Standortinformationen sind nicht verfügbar.';
-  }
 }
 
