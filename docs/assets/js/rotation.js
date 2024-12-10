@@ -52,9 +52,49 @@ function permission() {
             })
             .catch(console.error);
     } else {
-        alert("DeviceOrientationEvent is not defined for this device");
+        enableMouseControl();
     }
     
+}
+
+// mouse and trackpad control
+function enableMouseControl() {
+
+  const container = document.getElementById("container");
+
+  let isDragging = false;
+  let startX = 0;        
+  let shift = 0;
+
+  container.addEventListener("mousedown", (event) => {
+      isDragging = true;
+      startX = event.clientX; // starting position
+  });
+
+  container.addEventListener("mousemove", (event) => {
+      if (!isDragging) return;
+      const deltaX = event.clientX - startX; // calculate shift
+      shift += (deltaX / window.innerWidth) * 100; // transfer shift to %
+      container.style.backgroundPositionX = `${-shift}%`;
+      startX = event.clientX; // adapt starting position
+  });
+
+  // End dragging on mouse up or leaving container
+  container.addEventListener("mouseup", () => isDragging = false);
+  container.addEventListener("mouseleave", () => isDragging = false);
+
+  container.addEventListener("wheel", (event) => {
+    const deltaX = event.deltaX; // horizontal
+    const deltaY = event.deltaY; // vertical
+
+    // horizontal scrolling
+    shift += (deltaX / window.innerWidth) * 100;
+
+    // vertical scrolling
+    shift += (deltaY / window.innerHeight) * 100;
+
+    container.style.backgroundPositionX = `${-shift}%`;
+  });
 }
 
 const locationBtn = document.getElementById("location-button");
