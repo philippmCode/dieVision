@@ -52,6 +52,7 @@ function permission() {
             })
             .catch(console.error);
     } else {
+        alert("Keine device Orientation verfügbar");
         enableMouseControl();
     }
     
