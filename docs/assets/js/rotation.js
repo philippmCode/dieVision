@@ -25,7 +25,6 @@ function permission() {
                         if (lastAlpha !== null) {
                             
                             let delta = alpha - lastAlpha;
-    
                             // transition at 360°/0°-border
                             if (delta > 180) {
                                 delta -= 360;
@@ -43,6 +42,7 @@ function permission() {
     
                             // Debugging/Anzeige
                             displayRotationData(shift);
+                            displayPosition(shift)
                             displayOrientationData(alpha, beta, gamma);
                         }
     
