@@ -1,5 +1,19 @@
-const btn = document.getElementById("device-orientation-button");
-btn.addEventListener("click", permission);
+let orientationListener;
+
+document.getElementById("switch1").addEventListener("change", (event) => {
+  if (event.target.checked) {
+      permission();
+  } else {
+      disableOrientationListener();
+  }
+});
+
+function disableOrientationListener() {
+  console.log("Switch deaktiviert, Listener wird entfernt.");
+  window.removeEventListener("deviceorientation", orientationListener); // Entfernt den Event-Listener
+}
+
+document.getElementById("switch2").addEventListener("change", getUserLocation);
 
 function permission() {
     if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
@@ -10,21 +24,20 @@ function permission() {
                     let startOrientation = null;
                     let lastAlpha = null;       
                     let shift = -50;    //starting position
-    
-                    window.addEventListener("deviceorientation", (event) => {
-                        
+
+                    // Gerät-Orientierung-Listener
+                    orientationListener = (event) => {
                         const alpha = event.alpha; 
                         const beta = event.beta;
                         const gamma = event.gamma;
-    
+
                         if (startOrientation === null) {
                             startOrientation = alpha;
                             lastAlpha = alpha; 
                             displayStartingPoint(startOrientation);
                         }
-    
+
                         if (lastAlpha !== null) {
-                            
                             let delta = alpha - lastAlpha;
                             // transition at 360°/0°-border
                             if (delta > 180) {
@@ -32,28 +45,29 @@ function permission() {
                             } else if (delta < -180) {
                                 delta += 360;
                             }
-    
+
                             // shift in %
                             shift += (delta / 360) * 200;
-    
-                            // picture gets only adjusted if device held correctly
+
+                            // position nur anpassen, wenn das Gerät richtig gehalten wird
                             if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
-                                console.log("position adapted");
                                 container.style.backgroundPositionX = `${-shift}%`;
                             }
-    
-                            // Debugging/Anzeige
+
                             displayRotationData(shift);
-                            displayOrientationData(alpha, beta, gamma);
+                            displayPosition(shift);
                         }
-    
+
                         lastAlpha = alpha; // store alpha value for next event
-                    });
+                    };
+
+                    // Füge den Event-Listener für deviceorientation hinzu
+                    window.addEventListener("deviceorientation", orientationListener);
                 }
             })
             .catch(console.error);
     } else {
-        console.log("Keine device Orientation verfügbar");
+        console.log("Device Orientation nicht verfügbar.");
         enableMouseControl();
     }
     
@@ -99,10 +113,7 @@ function enableMouseControl() {
   });
 }
 
-const locationBtn = document.getElementById("location-button");
-locationBtn.addEventListener("click", getUserLocation);
-
-// Orte und deren Koordinaten
+// places with coordinates
 const locationMap = new Map([
   ["vancouver", { lat: 49.246292, lon: -123.116226 }],
   ["atacama-desert", { lat: -23.863213, lon: -69.141754 }],

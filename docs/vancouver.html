@@ -14,11 +14,25 @@
             <header>
                 <h1>Vancouver</h1>
             </header>
+            
+            <p><br>Vancouver, a bustling seaport on the west coast of British Columbia, 
+                is one of Canada's most densely populated and ethnically diverse cities. 
+                A popular movie set, it is surrounded by mountains and also boasts a thriving arts, theater and music scene. 
+            </p>
         </div>
 
-
-        <button id="device-orientation-button">Enable Device Orientation</button>
-        <button id="location-button">Enable location tracking</button>
+        <!-- Rounded switch -->
+        <label class="switch" id="switch1">
+            <span class="switch-text">Device orientation</span>
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+    
+        <label class="switch" id="switch2">
+            <span class="switch-text">Location access</span>
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
 
         <div id="data">
             <p>Startpunkt: <span id="start">-</span></p>
@@ -31,7 +45,7 @@
         </div>
 
         <div id="distanceContainer">
-            <p><span id="location">Enable location access</span></p>
+            <p><span id="location">Activate the location access switch to see your distance to Vancouver</span></p>
             <span id="distance"></span></p>
         </div>
     
