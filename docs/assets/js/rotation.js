@@ -210,6 +210,7 @@ const fullscreenIcon = document.getElementById("fullscreen-icon");
 const expandPath = "M3 3h6v2H5v4H3V3zm18 0v6h-2V5h-4V3h6zm0 18h-6v-2h4v-4h2v6zM3 21v-6h2v4h4v2H3z";
 const collapsePath = "M5 5h4v2H7v2H5V5zm14 0v4h-2V7h-2V5h4zM5 19v-4h2v2h2v2H5zm14 0h-4v-2h2v-2h2v4z"; 
 
+// needs to be fixed
 fullscreenBtn.addEventListener("click", () => {
     if (!document.fullscreenElement) {
         container.requestFullscreen()
