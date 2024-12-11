@@ -233,10 +233,6 @@ function displayStartingPoint(start) {
     document.getElementById('start').innerText = start !== null ? start.toFixed(2) : '-';
 }
 
-function displayPosition(position) {
-    document.getElementById('position').innerText = position !== null ? start.toFixed(2) : '-';
-}
-
 function displayRotationData(rotation) {
     document.getElementById('rotation').innerText = rotation !== null ? rotation.toFixed(2) : '-';
 }
