@@ -1,4 +1,5 @@
 let orientationListener;
+let mouseControlActive = false;
 
 document.getElementById("switch1").addEventListener("change", (event) => {
   if (event.target.checked) {
@@ -10,108 +11,146 @@ document.getElementById("switch1").addEventListener("change", (event) => {
 
 function disableOrientationListener() {
   console.log("Switch deaktiviert, Listener wird entfernt.");
-  window.removeEventListener("deviceorientation", orientationListener); // Entfernt den Event-Listener
+  if (orientationListener) {
+    console.log("Wir gehen rein");
+    window.removeEventListener("deviceorientation", orientationListener);  // Entfernt den Event-Listener
+    orientationListener = null;  // Setze auf null, um sicherzustellen, dass der Listener entfernt wurde
+  }
+  console.log("wir sind hier");
+  if (mouseControlActive) {
+    console.log("wir werden die mausssteuerung deaktivieren");
+    mouseControlActive = false;
+    disableMouseControl();
+  }
 }
 
 document.getElementById("switch2").addEventListener("change", getUserLocation);
 
 function permission() {
-    if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
-        DeviceOrientationEvent.requestPermission()
-            .then(response => {
-                if (response === "granted") {
-                    console.log("Permission granted");
-                    let startOrientation = null;
-                    let lastAlpha = null;       
-                    let shift = -50;    //starting position
+  if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
+      DeviceOrientationEvent.requestPermission()
+          .then(response => {
+              console.log("Response: ", response);
+              if (response === "granted") {
+                  console.log("Permission granted");
+                  let startOrientation = null;
+                  let lastAlpha = null;       
+                  let shift = -50;    // starting position
 
-                    // Gerät-Orientierung-Listener
-                    orientationListener = (event) => {
-                        const alpha = event.alpha; 
-                        const beta = event.beta;
-                        const gamma = event.gamma;
+                  // Gerät-Orientierung-Listener
+                  console.log("wir starten das ding");
+                  orientationListener = (event) => {
+                      console.log("Orientation event listener triggered");
+                      const alpha = event.alpha; 
+                      const beta = event.beta;
+                      const gamma = event.gamma;
 
-                        if (startOrientation === null) {
-                            startOrientation = alpha;
-                            lastAlpha = alpha; 
-                            displayStartingPoint(startOrientation);
-                        }
+                      if (startOrientation === null) {
+                          startOrientation = alpha;
+                          lastAlpha = alpha; 
+                          displayStartingPoint(startOrientation);
+                      }
 
-                        if (lastAlpha !== null) {
-                            let delta = alpha - lastAlpha;
-                            // transition at 360°/0°-border
-                            if (delta > 180) {
-                                delta -= 360;
-                            } else if (delta < -180) {
-                                delta += 360;
-                            }
+                      if (lastAlpha !== null) {
+                          let delta = alpha - lastAlpha;
+                          // transition at 360°/0°-border
+                          if (delta > 180) {
+                              delta -= 360;
+                          } else if (delta < -180) {
+                              delta += 360;
+                          }
 
-                            // shift in %
-                            shift += (delta / 360) * 200;
+                          // shift in %
+                          shift += (delta / 360) * 200;
 
-                            // position nur anpassen, wenn das Gerät richtig gehalten wird
-                            if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
-                                container.style.backgroundPositionX = `${-shift}%`;
-                            }
+                          // position nur anpassen, wenn das Gerät richtig gehalten wird
+                          if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
+                              container.style.backgroundPositionX = `${-shift}%`;
+                          }
 
-                            displayRotationData(shift);
-                            displayPosition(shift);
-                        }
+                          displayRotationData(shift);
+                          displayPosition(shift);
+                      }
 
-                        lastAlpha = alpha; // store alpha value for next event
-                    };
+                      lastAlpha = alpha; // store alpha value for next event
+                  };
 
-                    // Füge den Event-Listener für deviceorientation hinzu
-                    window.addEventListener("deviceorientation", orientationListener);
-                }
-            })
-            .catch(console.error);
-    } else {
-        console.log("Device Orientation nicht verfügbar.");
-        enableMouseControl();
-    }
-    
+                  // Bestätige, dass der Event-Listener gesetzt wird
+                  console.log("Event listener wird gesetzt");
+                  window.addEventListener("deviceorientation", orientationListener);
+              } else {
+                  console.log("Permission wurde nicht erteilt");
+              }
+          })
+          .catch(console.error);
+  } else {
+      console.log("Device Orientation nicht verfügbar.");
+      enableMouseControl();
+  }
 }
 
-// mouse and trackpad control
+// Event-Handler für mouse events
+let onMouseDown, onMouseMove, onMouseUp, onMouseLeave, onWheel;
+
+// Funktion zur Aktivierung der Maussteuerung
 function enableMouseControl() {
+    const container = document.getElementById("container");
+    let isDragging = false;
+    let startX = 0;
+    let shift = 0;
 
-  const container = document.getElementById("container");
+    // Event-Handler für mouse events
+    onMouseDown = (event) => {
+        isDragging = true;
+        startX = event.clientX; // starting position
+    };
 
-  let isDragging = false;
-  let startX = 0;        
-  let shift = 0;
+    onMouseMove = (event) => {
+        if (!isDragging) return;
+        const deltaX = event.clientX - startX; // calculate shift
+        shift += (deltaX / window.innerWidth) * 100; // shift in %
+        container.style.backgroundPositionX = `${-shift}%`;
+        startX = event.clientX; // adapt starting position
+    };
 
-  container.addEventListener("mousedown", (event) => {
-      isDragging = true;
-      startX = event.clientX; // starting position
-  });
+    onMouseUp = () => isDragging = false;
+    onMouseLeave = () => isDragging = false;
 
-  container.addEventListener("mousemove", (event) => {
-      if (!isDragging) return;
-      const deltaX = event.clientX - startX; // calculate shift
-      shift += (deltaX / window.innerWidth) * 100; // transfer shift to %
-      container.style.backgroundPositionX = `${-shift}%`;
-      startX = event.clientX; // adapt starting position
-  });
+    onWheel = (event) => {
+        const deltaX = event.deltaX; // horizontal
+        const deltaY = event.deltaY; // vertical
+        shift += (deltaX / window.innerWidth) * 100; // horizontal scrolling
+        shift += (deltaY / window.innerHeight) * 100; // vertical scrolling
+        container.style.backgroundPositionX = `${-shift}%`;
+    };
 
-  // End dragging on mouse up or leaving container
-  container.addEventListener("mouseup", () => isDragging = false);
-  container.addEventListener("mouseleave", () => isDragging = false);
+    // Event-Listener hinzufügen
+    container.addEventListener("mousedown", onMouseDown);
+    container.addEventListener("mousemove", onMouseMove);
+    container.addEventListener("mouseup", onMouseUp);
+    container.addEventListener("mouseleave", onMouseLeave);
+    container.addEventListener("wheel", onWheel);
 
-  container.addEventListener("wheel", (event) => {
-    const deltaX = event.deltaX; // horizontal
-    const deltaY = event.deltaY; // vertical
-
-    // horizontal scrolling
-    shift += (deltaX / window.innerWidth) * 100;
-
-    // vertical scrolling
-    shift += (deltaY / window.innerHeight) * 100;
-
-    container.style.backgroundPositionX = `${-shift}%`;
-  });
+    // Maussteuerung aktivieren
+    mouseControlActive = true;
+    console.log("Maussteuerung aktiviert.");
 }
+
+// Funktion zur Deaktivierung der Maussteuerung
+function disableMouseControl() {
+    const container = document.getElementById("container");
+    // Entferne Event-Listener
+    container.removeEventListener("mousedown", onMouseDown);
+    container.removeEventListener("mousemove", onMouseMove);
+    container.removeEventListener("mouseup", onMouseUp);
+    container.removeEventListener("mouseleave", onMouseLeave);
+    container.removeEventListener("wheel", onWheel);
+
+    // Maussteuerung deaktivieren
+    mouseControlActive = false;
+    console.log("Maussteuerung deaktiviert.");
+}
+
 
 // places with coordinates
 const locationMap = new Map([
