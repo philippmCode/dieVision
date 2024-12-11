@@ -34,6 +34,8 @@ function permission() {
     
                             // shift in %
                             shift += (delta / 360) * 200;
+
+                            alert("rotation handled normally");
     
                             // picture gets only adjusted if device held correctly
                             if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
@@ -42,7 +44,6 @@ function permission() {
     
                             // Debugging/Anzeige
                             displayRotationData(shift);
-                            displayPosition(shift)
                             displayOrientationData(alpha, beta, gamma);
                         }
     
