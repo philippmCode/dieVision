@@ -6,6 +6,7 @@ function permission() {
         DeviceOrientationEvent.requestPermission()
             .then(response => {
                 if (response === "granted") {
+                    console.log("Permission granted");
                     let startOrientation = null;
                     let lastAlpha = null;       
                     let shift = -50;    //starting position
@@ -53,7 +54,7 @@ function permission() {
             })
             .catch(console.error);
     } else {
-        alert("Keine device Orientation verfügbar");
+        console.log("Keine device Orientation verfügbar");
         enableMouseControl();
     }
     
