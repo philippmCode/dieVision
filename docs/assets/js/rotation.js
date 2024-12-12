@@ -1,13 +1,16 @@
 let orientationListener;
 let mouseControlActive = false;
 
-document.getElementById("switch2").addEventListener("change", (event) => {
-  if (event.target.checked) {
-      permission();
-  } else {
-      disableOrientationListener();
-  }
-});
+const switchElement = document.getElementById("switch2");
+if (switchElement) {
+  switchElement.addEventListener("change", (event) => {
+    if (event.target.checked) {
+        permission();
+    } else {
+        disableOrientationListener();
+    }
+  });
+}
 
 function disableOrientationListener() {
   console.log("Switch deaktiviert, Listener wird entfernt.");
