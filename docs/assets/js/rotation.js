@@ -12,6 +12,13 @@ if (switchElement) {
   });
 }
 
+function deactivateSwitch(switchName) {
+  const switchElement = document.getElementById(switchName);
+  if (switchElement) {
+    switchElement.checked = false;
+  }
+}
+
 function disableOrientationListener() {
   console.log("Switch deaktiviert, Listener wird entfernt.");
   endedRotation();
@@ -83,6 +90,7 @@ function permission() {
                   window.addEventListener("deviceorientation", orientationListener);
               } else {
                   console.log("Permission wurde nicht erteilt");
+                  deactivateSwitch(switch2);
               }
           })
           .catch(console.error);
@@ -176,10 +184,12 @@ function getUserLocation() {
         calculateDistanceForCurrentPage(userLat, userLon);
       },
       (error) => {
+        deactivateSwitch(switch1);
         console.error("Fehler beim Abrufen des Standorts: ", error);
       }
     );
   } else {
+    deactivateSwitch(switch1);
     console.log("Geolocation wird von diesem Browser nicht unterstützt.");
   }
 }
