@@ -73,8 +73,6 @@ function permission() {
                               console.log("rotation shift executed");
                               container.style.backgroundPositionX = `${-shift}%`;
                           }
-
-                          displayRotationData(shift);
                       }
 
                       lastAlpha = alpha; // store alpha value for next event
@@ -215,16 +213,16 @@ function displayLocation(lat, lon) {
 
 function calculateDistanceForCurrentPage(userLat, userLon) {
   const currentPage = getCurrentPageName();  // Extrahiert den Namen des Ortes von der URL
+  const distanceElement = document.getElementById("distance");
 
   if (locationMap.has(currentPage)) {  // Wenn der Ort in der Map existiert
     const destinationCoords = locationMap.get(currentPage);  // Holt die Koordinaten des Ortes
     const distance = calculateDistance(userLat, userLon, destinationCoords.lat, destinationCoords.lon);  // Berechnet die Distanz
 
     // Zeigt die Distanz auf der Seite an
-    const distanceElement = document.getElementById("distance");
     distanceElement.innerHTML = `<br>Distance to ${currentPage}: ${distance.toFixed(2)} km`;
   } else {
-    distanceElement.innerText = `You can't travel there (yet)...`;
+    distanceElement.innerHTML = `<br>You can't travel there (yet)...`;
   }
 }
 
