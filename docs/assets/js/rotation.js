@@ -11,6 +11,7 @@ document.getElementById("switch2").addEventListener("change", (event) => {
 
 function disableOrientationListener() {
   console.log("Switch deaktiviert, Listener wird entfernt.");
+  endedRotation();
   if (orientationListener) {
     console.log("Wir gehen rein");
     window.removeEventListener("deviceorientation", orientationListener);  // Entfernt den Event-Listener
@@ -33,6 +34,7 @@ function permission() {
               console.log("Response: ", response);
               if (response === "granted") {
                   console.log("Permission granted");
+                  startedRotation();
                   let startOrientation = null;
                   let lastAlpha = null;       
                   let shift = -50;    // starting position
@@ -85,6 +87,7 @@ function permission() {
           .catch(console.error);
   } else {
       console.log("Device Orientation nicht verfügbar.");
+      startedRotation();
       enableMouseControl();
   }
 }
@@ -189,6 +192,16 @@ function getCurrentPageName() {
   currentPage = currentPage.replace(".html", "");
 
   return currentPage;
+}
+
+function startedRotation() {
+  const experienceElement = document.getElementById("experience");
+  experienceElement.innerHTML = `Rotate your device horizontally`;
+}
+
+function endedRotation() {
+  const experienceElement = document.getElementById("experience");
+  experienceElement.innerHTML = `Enable Device orientation to experience being in the Atacama`;
 }
 
 function displayLocation(lat, lon) {
