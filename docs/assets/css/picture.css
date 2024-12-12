@@ -98,80 +98,62 @@ body, html {
     fill: white; /* Weiße Farbe für das Icon */
 }
 
-/* The switch - the box around the slider */
-.switch {
+#switchBox {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  width: 80px;  /* Oder eine breitere Breite für den Switch */
+  align-items: center; /* Vertikale Ausrichtung von Switch und Text */
+  gap: 10px; /* Abstand zwischen Switch und Text */
+  margin-bottom: 15px; /* Abstand zwischen den Switch-Boxen */
 }
 
-#switch1 {
-  grid-row: 1;
-  grid-column: 1;
+.switch {
+  display: inline-block;
+  position: relative;
+  width: 34px; /* Breite des Schalters */
+  height: 20px; /* Höhe des Schalters */
 }
 
-#switch2 {
-  grid-row: 2;
-  grid-column: 1;
-}
-
-.switch-text {
-  margin-bottom: 10px; /* Abstand zwischen Text und Switch */
-  font-size: 14px;
-  color: #333;
-  white-space: nowrap;
-}
-
-/* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-/* The slider */
 .slider {
-  position: relative;
+  position: absolute;
   cursor: pointer;
-  width: 60px;
-  height: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #ccc;
-  transition: .4s;
+  transition: 0.4s;
+  border-radius: 34px;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
   background-color: white;
-  transition: .4s;
+  transition: 0.4s;
+  border-radius: 50%;
 }
 
 input:checked + .slider {
   background-color: #2196F3;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
 input:checked + .slider:before {
-  transform: translateX(26px);
+  transform: translateX(14px);
 }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
+.switch-text {
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap; /* Verhindert Zeilenumbrüche im Text */
 }
 
 

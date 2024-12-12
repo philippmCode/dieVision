@@ -12,12 +12,32 @@
 
         <div id="headerDiv">
             <header>
-                <h1>starry Sky</h1>
+                <h1>Cerro Paranal</h1>
             </header>
+            
+            <p><br>The Very Large Telescope (VLT) is an astronomical facility operated since 1998 by the 
+                European Southern Observatory, located on Cerro Paranal in the Atacama Desert of northern Chile. 
+                <br>
+                It consists of four individual telescopes, each equipped with a primary mirror that measures 8.2 meters in diameter. 
+                These optical telescopes, named Antu, Kueyen, Melipal, and Yepun (all words for astronomical objects in the Mapuche language), 
+                are generally used separately but can be combined to achieve a very high angular resolution.
+            </p>
         </div>
 
-        <button id="device-orientation-button">Enable Device Orientation</button>
-        <button id="location-button">Enable location tracking</button>
+        <!-- Rounded switch -->
+        <label class="switch" id="switch1">
+            <span class="switch-text">Device orientation</span>
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+    
+        <label class="switch" id="switch2">
+            <span class="switch-text">Location access</span>
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+
+        <!--
 
         <div id="data">
             <p>Startpunkt: <span id="start">-</span></p>
@@ -28,6 +48,8 @@
             <p>Gamma: <span id="gamma">-</span></p>
             <p>Position: <span id = "position">-</span></p>
         </div>
+
+        -->
 
         <div id="distanceContainer">
             <p><span id="location">Enable location access</span></p>

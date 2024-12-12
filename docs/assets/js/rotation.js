@@ -1,7 +1,7 @@
 let orientationListener;
 let mouseControlActive = false;
 
-document.getElementById("switch1").addEventListener("change", (event) => {
+document.getElementById("switch2").addEventListener("change", (event) => {
   if (event.target.checked) {
       permission();
   } else {
@@ -24,7 +24,7 @@ function disableOrientationListener() {
   }
 }
 
-document.getElementById("switch2").addEventListener("change", getUserLocation);
+document.getElementById("switch1").addEventListener("change", getUserLocation);
 
 function permission() {
   if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
@@ -157,7 +157,7 @@ const locationMap = new Map([
   ["vancouver", { lat: 49.246292, lon: -123.116226 }],
   ["atacama-desert", { lat: -23.863213, lon: -69.141754 }],
   ["bad-wildbad", { lat: 48.750244, lon: 8.550301 }],
-  ["starry-sky", { lat:  -24.6230, lon: -70.4025 }]
+  ["cerro-paranal", { lat:  -24.6230, lon: -70.4025 }]
 ]);
 
 // Funktion, um die Position des Nutzers zu holen

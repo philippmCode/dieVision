@@ -1,27 +1,27 @@
 # Summary
 
-Date : 2024-12-10 15:48:19
+Date : 2024-12-12 12:22:27
 
 Directory /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs
 
-Total : 10 files,  629 codes, 19 comments, 155 blanks, all 803 lines
+Total : 10 files,  761 codes, 45 comments, 168 blanks, all 974 lines
 
 Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
 
 ## Languages
 | language | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| HTML | 7 | 291 | 1 | 74 | 366 |
-| JavaScript | 1 | 181 | 18 | 51 | 250 |
-| CSS | 2 | 157 | 0 | 30 | 187 |
+| HTML | 7 | 335 | 17 | 75 | 427 |
+| JavaScript | 1 | 219 | 24 | 52 | 295 |
+| CSS | 2 | 207 | 4 | 41 | 252 |
 
 ## Directories
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| . | 10 | 629 | 19 | 155 | 803 |
-| . (Files) | 7 | 291 | 1 | 74 | 366 |
-| assets | 3 | 338 | 18 | 81 | 437 |
-| assets/css | 2 | 157 | 0 | 30 | 187 |
-| assets/js | 1 | 181 | 18 | 51 | 250 |
+| . | 10 | 761 | 45 | 168 | 974 |
+| . (Files) | 7 | 335 | 17 | 75 | 427 |
+| assets | 3 | 426 | 28 | 93 | 547 |
+| assets/css | 2 | 207 | 4 | 41 | 252 |
+| assets/js | 1 | 219 | 24 | 52 | 295 |
 
 Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
