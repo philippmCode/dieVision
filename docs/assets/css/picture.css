@@ -99,16 +99,16 @@ body, html {
 
 #switchBox {
   display: flex;
-  align-items: center; /* Vertikale Ausrichtung von Switch und Text */
-  gap: 10px; /* Abstand zwischen Switch und Text */
-  margin-bottom: 15px; /* Abstand zwischen den Switch-Boxen */
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 .switch {
   display: inline-block;
   position: relative;
-  width: 34px; /* Breite des Schalters */
-  height: 20px; /* Höhe des Schalters */
+  width: 34px;
+  height: 20px;
 }
 
 .switch input {
@@ -141,18 +141,28 @@ body, html {
   border-radius: 50%;
 }
 
+/* Aktivierter Zustand */
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #4163de;
 }
 
 input:checked + .slider:before {
   transform: translateX(14px);
 }
 
+/* Deaktivierter Zustand */
+input:not(:checked) + .slider {
+  background-color: #ccc;
+}
+
+input:not(:checked) + .slider:before {
+  transform: translateX(0);
+}
+
 .switch-text {
   font-size: 14px;
   color: #333;
-  white-space: nowrap; /* Verhindert Zeilenumbrüche im Text */
+  white-space: nowrap;
 }
 
 

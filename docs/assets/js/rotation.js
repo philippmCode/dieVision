@@ -14,9 +14,12 @@ if (switchElement) {
 
 function deactivateSwitch(switchName) {
   const switchElement = document.getElementById(switchName);
+  console.log(switchElement.checked);
   if (switchElement) {
+    console.log("switch element active");
     switchElement.checked = false;
   }
+  console.log(switchElement.checked);
   console.log("deactivating switch");
 }
 
@@ -91,7 +94,7 @@ function permission() {
                   window.addEventListener("deviceorientation", orientationListener);
               } else {
                   console.log("Permission wurde nicht erteilt");
-                  deactivateSwitch(switch2);
+                  deactivateSwitch("switch2");
               }
           })
           .catch(console.error);
@@ -185,13 +188,35 @@ function getUserLocation() {
         calculateDistanceForCurrentPage(userLat, userLon);
       },
       (error) => {
-        deactivateSwitch(switch1);
-        console.error("Fehler beim Abrufen des Standorts: ", error);
+        console.log("Error");
+        deactivateSwitch("switch1");
       }
     );
   } else {
-    deactivateSwitch(switch1);
+    deactivateSwitch("switch1");
     console.log("Geolocation wird von diesem Browser nicht unterstützt.");
+  }
+}
+
+function handleGeolocationError(error) {
+  deactivateSwitch(switch1);
+
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      console.error("Der Nutzer hat die Standortfreigabe verweigert.");
+      alert("Standortfreigabe wurde abgelehnt. Funktionalität deaktiviert.");
+      break;
+    case error.POSITION_UNAVAILABLE:
+      console.error("Standortinformationen sind nicht verfügbar.");
+      alert("Standortinformationen konnten nicht abgerufen werden.");
+      break;
+    case error.TIMEOUT:
+      console.error("Die Anfrage nach Standortinformationen ist abgelaufen.");
+      alert("Anfrage nach Standort abgelaufen. Versuchen Sie es erneut.");
+      break;
+    default:
+      console.error("Unbekannter Fehler beim Abrufen des Standorts.");
+      alert("Ein unbekannter Fehler ist aufgetreten.");
   }
 }
 
@@ -256,25 +281,25 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
   return distance; // distance in km
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // container whose background image we want to set
-    const container = document.getElementById("spaceContainer");
+const spaceContainer = document.getElementById("spaceContainer");
+if (spaceContainer) {
+  document.addEventListener("DOMContentLoaded", () => {
 
-    // api key gets inserted in the request url
-    const apiKey = 'IObSXih5k3lG7dSsjcj10QGQhmhnA2lRR9dDeFfl';
-    const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
+      // api key gets inserted in the request url
+      const apiKey = 'IObSXih5k3lG7dSsjcj10QGQhmhnA2lRR9dDeFfl';
+      const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
 
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        const imageUrl = data.url;
-        container.style.backgroundImage = `url(${imageUrl})`;
-    })
-    .catch(error => {
-        console.error('Error while loading the image:', error);
-    });
-});
+      fetch(url)
+      .then(response => response.json())
+      .then(data => {
+          const imageUrl = data.url;
+          container.style.backgroundImage = `url(${imageUrl})`;
+      })
+      .catch(error => {
+          console.error('Error while loading the image:', error);
+      });
+  });
+}
 
 const container = document.getElementById("container");
 const fullscreenBtn = document.getElementById("fullscreen-btn");
