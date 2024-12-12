@@ -48,7 +48,7 @@ body, html {
     grid-row: 3;
     grid-column: 2;
     width: 60vw;
-    height: 50vh;
+    height: 60vh;
     object-fit: cover;
 }
 
@@ -74,11 +74,11 @@ body, html {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    width: 48px; /* Einheitliche Größe */
+    width: 48px; 
     height: 48px;
-    background-color: rgba(0, 0, 0, 0.7); /* Halbtransparenter Hintergrund */
+    background-color: rgba(0, 0, 0, 0.7); /* semi transparent background */
     border: none;
-    border-radius: 50%; /* Runde Form */
+    border-radius: 50%; /* round form */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,7 +87,7 @@ body, html {
 }
 
 #fullscreen-btn:hover {
-    background-color: rgba(0, 0, 0, 0.9); /* Dunkler beim Hover */
+    background-color: rgba(0, 0, 0, 0.9); /* darker when hovered */
     transform: scale(1.1); /* Leichte Vergrößerung beim Hover */
 }
 
