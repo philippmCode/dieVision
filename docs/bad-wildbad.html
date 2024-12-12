@@ -20,32 +20,32 @@
             </p>
         </div>
 
-        <!-- Rounded switch -->
-        <label class="switch" id="switch1">
-            <span class="switch-text">Device orientation</span>
-            <input type="checkbox">
-            <span class="slider round"></span>
-        </label>
-    
-        <label class="switch" id="switch2">
-            <span class="switch-text">Location access</span>
-            <input type="checkbox">
-            <span class="slider round"></span>
-        </label>
-
-        <div id="data">
-            <p>Startpunkt: <span id="start">-</span></p>
-            <p>Rotation: <span id="rotation">-</span></p>
-            <p> </p>
-            <p>Alpha: <span id="alpha">-</span></p>
-            <p>Beta: <span id="beta">-</span></p>
-            <p>Gamma: <span id="gamma">-</span></p>
-            <p>Position: <span id = "position">-</span></p>
-        </div>
-
         <div id="distanceContainer">
-            <p><span id="location">Enable location access</span></p>
+
+            <h4>Interactive features</h4>
+            <p><br></p>
+            <!-- Rounded switch -->
+            <div id="switchBox">
+                <label class="switch" id="switch1">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <span class="switch-text">Location access</span>
+            </div>
+
+            <p><span id="location">Activate the location access switch to see your distance to Vancouver</span></p>
             <span id="distance"></span></p>
+            <p><br></p>
+            
+            <div id="switchBox">
+                <label class="switch" id="switch2">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <span class="switch-text">Device orientation</span>
+            </div>
+            <p>Enable Device orientation to experience being in Vancouver</p>
+
         </div>
     
         <div id="container" style="background-image: url(assets/images/BadWildbad.jpeg);">

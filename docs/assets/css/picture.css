@@ -19,13 +19,13 @@ body, html {
 #distanceContainer {
     grid-row: 2;
     grid-column: 2;
+    background-color: aliceblue;
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; /* Three columns that are all the same size */
     grid-template-rows: repeat(3, auto); /* Three rows with dynamic height */
-    gap: 10px; 
     width: 100%; 
     margin: auto; /* centers the grid */
     background-color: #e0e0e0;
@@ -34,7 +34,6 @@ body, html {
 
 .grid-container > div {
     padding: 20px;
-    border: 2px solid #4CAF50; 
     box-sizing: border-box; /* includes border in the width */
 }
 
