@@ -199,7 +199,7 @@ function getCurrentPageName() {
 
 function startedRotation() {
   const experienceElement = document.getElementById("experience");
-  experienceElement.innerHTML = `Rotate your device horizontally`;
+  experienceElement.innerHTML = `Rotational shifting now possible`;
 }
 
 function endedRotation() {
@@ -293,18 +293,4 @@ fullscreenBtn.addEventListener("click", () => {
             .catch((err) => alert(`Fehler beim Beenden des Vollbildmodus: ${err.message}`));
     }
 });
-
-function displayStartingPoint(start) {
-    document.getElementById('start').innerText = start !== null ? start.toFixed(2) : '-';
-}
-
-function displayRotationData(rotation) {
-    document.getElementById('rotation').innerText = rotation !== null ? rotation.toFixed(2) : '-';
-}
-
-function displayOrientationData(alpha, beta, gamma) {
-    document.getElementById('alpha').innerText = alpha !== null ? alpha.toFixed(2) : '-';
-    document.getElementById('beta').innerText = beta !== null ? beta.toFixed(2) : '-';
-    document.getElementById('gamma').innerText = gamma !== null ? gamma.toFixed(2) : '-';
-}
 
