@@ -17,6 +17,7 @@ function deactivateSwitch(switchName) {
   if (switchElement) {
     switchElement.checked = false;
   }
+  console.log("deactivating switch");
 }
 
 function disableOrientationListener() {
