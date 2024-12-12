@@ -72,7 +72,6 @@ function permission() {
                           }
 
                           displayRotationData(shift);
-                          displayPosition(shift);
                       }
 
                       lastAlpha = alpha; // store alpha value for next event
