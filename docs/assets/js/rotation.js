@@ -14,8 +14,8 @@ function disableOrientationListener() {
   endedRotation();
   if (orientationListener) {
     console.log("Wir gehen rein");
-    window.removeEventListener("deviceorientation", orientationListener);  // Entfernt den Event-Listener
-    orientationListener = null;  // Setze auf null, um sicherzustellen, dass der Listener entfernt wurde
+    window.removeEventListener("deviceorientation", orientationListener);  // removes the listener
+    orientationListener = null;  // to make sure listener was removed
   }
   console.log("wir sind hier");
   if (mouseControlActive) {
