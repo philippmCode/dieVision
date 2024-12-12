@@ -1,0 +1,35 @@
+Date : 2024-12-12 18:02:38
+Directory : /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/assets
+Total : 8 files,  -397 codes, -6 comments, -89 blanks, all -492 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |          1 |         -9 |          0 |         -4 |        -13 |
+| HTML       |          7 |       -388 |         -6 |        -85 |       -479 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                              | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                 |          8 |       -397 |         -6 |        -89 |       -492 |
+| ..                                                                                |          7 |       -388 |         -6 |        -85 |       -479 |
+| js                                                                                |          1 |         -9 |          0 |         -4 |        -13 |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                          | language   | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/assets/js/rotation.js | JavaScript |         -9 |          0 |         -4 |        -13 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/atacama-desert.html   | HTML       |        -63 |         -1 |        -13 |        -77 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/bad-wildbad.html      | HTML       |        -51 |         -1 |        -12 |        -64 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/cerro-paranal.html    | HTML       |        -55 |         -1 |        -13 |        -69 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/index.html            | HTML       |        -60 |         -1 |        -11 |        -72 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/skyline.html          | HTML       |        -57 |         -1 |        -12 |        -70 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/space.html            | HTML       |        -41 |          0 |        -10 |        -51 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/vancouver.html        | HTML       |        -61 |         -1 |        -14 |        -76 |
+| Total                                                                             |            |       -397 |         -6 |        -89 |       -492 |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
