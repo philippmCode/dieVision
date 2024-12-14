@@ -285,32 +285,25 @@ if (spaceContainer) {
   });
 }
 
-const container = document.getElementById("container");
-const fullscreenBtn = document.getElementById("fullscreen-btn");
-const fullscreenIconPath = document.getElementById("fullscreen-icon-path");
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("container");
+  const fullscreenBtn = document.getElementById("fullscreen-btn");
 
-const iconPath = "M3 3h6v2H5v4H3V3zm18 0v6h-2V5h-4V3h6zm0 18h-6v-2h4v-4h2v6zM3 21v-6h2v4h4v2H3z";
-
-if (fullscreenBtn) {  
-  fullscreenBtn.addEventListener("click", () => {
-    if (!document.fullscreenElement) {
-        container.requestFullscreen()
-            .then(() => {
-                // Wenn der Vollbildmodus aktiviert wird, ändere das Icon (optional)
-                fullscreenIconPath.setAttribute("d", iconPath);
-                console.log("Aktuelles d-Attribut nach Aktivierung des Vollbildmodus:", fullscreenIconPath.getAttribute("d"));
-                console.log("Vollbildmodus aktiviert");
-            })
-            .catch((err) => alert(`Fehler beim Aktivieren des Vollbildmodus: ${err.message}`));
-    } else {
-        document.exitFullscreen()
-            .then(() => {
-                // Wenn der Vollbildmodus verlassen wird, ändere das Icon (optional)
-                fullscreenIconPath.setAttribute("d", iconPath);
-                console.log("Aktuelles d-Attribut nach Beenden des Vollbildmodus:", fullscreenIconPath.getAttribute("d"));
-                console.log("Vollbildmodus beendet");
-            })
-            .catch((err) => alert(`Fehler beim Beenden des Vollbildmodus: ${err.message}`));
-    }
-  });
-}
+  if (fullscreenBtn) {  
+    fullscreenBtn.addEventListener("click", () => {
+      if (!document.fullscreenElement) {
+          container.requestFullscreen()
+              .then(() => {
+                  console.log("Vollbildmodus aktiviert");
+              })
+              .catch((err) => console.log(`Fehler beim Aktivieren des Vollbildmodus: ${err.message}`));
+      } else {
+          document.exitFullscreen()
+              .then(() => {
+                  console.log("Vollbildmodus beendet");
+              })
+              .catch((err) => console.log(`Fehler beim Beenden des Vollbildmodus: ${err.message}`));
+      }
+    });
+  }
+});
