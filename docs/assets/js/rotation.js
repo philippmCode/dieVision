@@ -262,19 +262,23 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 const spaceContainer = document.getElementById("spaceContainer");
 if (spaceContainer) {
   document.addEventListener("DOMContentLoaded", () => {
+    // API key gets inserted in the request URL
+    const apiKey = 'IObSXih5k3lG7dSsjcj10QGQhmhnA2lRR9dDeFfl';
+    const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
 
-      // api key gets inserted in the request url
-      const apiKey = 'IObSXih5k3lG7dSsjcj10QGQhmhnA2lRR9dDeFfl';
-      const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
-
-      fetch(url)
-      .then(response => response.json())
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then(data => {
-          const imageUrl = data.url;
-          container.style.backgroundImage = `url(${imageUrl})`;
+        const imageUrl = data.url;
+        spaceContainer.style.backgroundImage = `url(${imageUrl})`;
       })
       .catch(error => {
-          console.error('Error while loading the image:', error);
+        console.error('Error while loading the image:', error);
       });
   });
 }
