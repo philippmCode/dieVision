@@ -1,107 +1,129 @@
 let orientationListener;
 let mouseControlActive = false;
 
-const switchElement = document.getElementById("switch2");
-if (switchElement) {
-  switchElement.addEventListener("change", (event) => {
+const locationSwitchElement = document.getElementById("switch1");
+const orientationSwitchElement = document.getElementById("switch2");
+
+if (locationSwitchElement) {
+  locationSwitchElement.addEventListener("change", async (event) => {
     if (event.target.checked) {
-        permission();
+      const permissionGranted = await getLocationPermission();
+      if (permissionGranted) {
+        console.log("Location permission granted");
+        getUserLocation();
+      } else {
+        console.log("Permission denied");
+        deactivateSwitch("switch1");
+      }
     } else {
-        disableOrientationListener();
+      console.log("Switch turned off");
+      deactivateSwitch("switch1");
+    }
+  });
+}
+
+if (orientationSwitchElement) {
+  orientationSwitchElement.addEventListener("change", (event) => {
+    if (event.target.checked) {
+      permission();
+    } else {
+      disableOrientationListener();
     }
   });
 }
 
 function deactivateSwitch(switchName) {
   const switchElement = document.getElementById(switchName);
-  console.log(switchElement.checked);
-  if (switchElement) {
-    console.log("switch element active");
+  if (switchElement && switchElement.checked) {
     switchElement.checked = false;
+    // Trigger change event to update the UI
+    console.log("Switch deactivated, triggering change event.");
+    const event = new Event('change');
+    switchElement.dispatchEvent(event);
   }
-  console.log(switchElement.checked);
-  console.log("deactivating switch");
 }
 
 function disableOrientationListener() {
-  console.log("Switch deaktiviert, Listener wird entfernt.");
+  console.log("Switch deactivated, removing listener.");
   endedRotation();
   if (orientationListener) {
-    console.log("Wir gehen rein");
     window.removeEventListener("deviceorientation", orientationListener);  // removes the listener
     orientationListener = null;  // to make sure listener was removed
   }
-  console.log("wir sind hier");
   if (mouseControlActive) {
-    console.log("wir werden die mausssteuerung deaktivieren");
     mouseControlActive = false;
     disableMouseControl();
   }
 }
 
-document.getElementById("switch1").addEventListener("change", getUserLocation);
+async function getLocationPermission() {
+  try {
+    const result = await navigator.permissions.query({ name: 'geolocation' });
+    if (result.state === 'granted') {
+      return true;
+    } else if (result.state === 'prompt') {
+      const permissionResult = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
+      return !!permissionResult;
+    }
+    return false;
+  } catch (error) {
+    console.log('Geolocation permission denied', error);
+    return false;
+  }
+}
 
 function permission() {
   if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
-      DeviceOrientationEvent.requestPermission()
-          .then(response => {
-              console.log("Response: ", response);
-              if (response === "granted") {
-                  console.log("Permission granted");
-                  startedRotation();
-                  let startOrientation = null;
-                  let lastAlpha = null;       
-                  let shift = -50;    // starting position
+    DeviceOrientationEvent.requestPermission()
+      .then(response => {
+        console.log("Response: ", response);
+        if (response === "granted") {
+          console.log("Permission granted");
+          startedRotation();
+          let startOrientation = null;
+          let lastAlpha = null;       
+          let shift = -50;    // starting position
 
-                  // Gerät-Orientierung-Listener
-                  console.log("wir starten das ding");
-                  orientationListener = (event) => {
-                      console.log("Orientation event listener triggered");
-                      const alpha = event.alpha; 
-                      const beta = event.beta;
-                      const gamma = event.gamma;
+          // Gerät-Orientierung-Listener
+          console.log("Starting orientation listener");
+          orientationListener = (event) => {
+            console.log("Orientation event listener triggered");
+            const alpha = event.alpha;
+            const beta = event.beta;
+            const gamma = event.gamma;
 
-                      if (startOrientation === null) {
-                          startOrientation = alpha;
-                          lastAlpha = alpha; 
-                          displayStartingPoint(startOrientation);
-                      }
+            if (startOrientation === null) {
+              startOrientation = alpha;
+              lastAlpha = alpha; 
+              displayStartingPoint(startOrientation);
+            }
 
-                      if (lastAlpha !== null) {
-                          let delta = alpha - lastAlpha;
-                          // transition at 360°/0°-border
-                          if (delta > 180) {
-                              delta -= 360;
-                          } else if (delta < -180) {
-                              delta += 360;
-                          }
-
-                          // shift in %
-                          shift += (delta / 360) * 200;
-
-                          // position nur anpassen, wenn das Gerät richtig gehalten wird
-                          if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
-                              console.log("rotation shift executed");
-                              container.style.backgroundPositionX = `${-shift}%`;
-                          }
-                      }
-
-                      lastAlpha = alpha; // store alpha value for next event
-                  };
-
-                  // Bestätige, dass der Event-Listener gesetzt wird
-                  console.log("Event listener wird gesetzt");
-                  window.addEventListener("deviceorientation", orientationListener);
-              } else {
-                  console.log("Permission wurde nicht erteilt");
-                  deactivateSwitch("switch2");
+            if (lastAlpha !== null) {
+              let delta = alpha - lastAlpha;
+              // transition at 360°/0°-border
+              if (delta > 180) {
+                delta -= 360;
+              } else if (delta < -180) {
+                delta += 360;
               }
-          })
-          .catch(console.error);
-  } else {
-      console.log("Device Orientation nicht verfügbar.");
-      startedRotation();
-      enableMouseControl();
+
+              // shift in %
+              shift += (delta / 360) * 200;
+
+              // position nur anpassen, wenn das Gerät richtig gehalten wird
+              if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
+                console.log("Rotation shift executed");
+                container.style.backgroundPositionX = `${-shift}%`;
+              }
+            }
+          };
+
+          window.addEventListener("deviceorientation", orientationListener);
+        }
+      })
+      .catch(console.error);
   }
 }
 
@@ -195,28 +217,6 @@ function getUserLocation() {
   } else {
     deactivateSwitch("switch1");
     console.log("Geolocation wird von diesem Browser nicht unterstützt.");
-  }
-}
-
-function handleGeolocationError(error) {
-  deactivateSwitch(switch1);
-
-  switch (error.code) {
-    case error.PERMISSION_DENIED:
-      console.error("Der Nutzer hat die Standortfreigabe verweigert.");
-      alert("Standortfreigabe wurde abgelehnt. Funktionalität deaktiviert.");
-      break;
-    case error.POSITION_UNAVAILABLE:
-      console.error("Standortinformationen sind nicht verfügbar.");
-      alert("Standortinformationen konnten nicht abgerufen werden.");
-      break;
-    case error.TIMEOUT:
-      console.error("Die Anfrage nach Standortinformationen ist abgelaufen.");
-      alert("Anfrage nach Standort abgelaufen. Versuchen Sie es erneut.");
-      break;
-    default:
-      console.error("Unbekannter Fehler beim Abrufen des Standorts.");
-      alert("Ein unbekannter Fehler ist aufgetreten.");
   }
 }
 
