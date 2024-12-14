@@ -1,25 +1,27 @@
 # Diff Summary
 
-Date : 2024-12-12 15:30:48
+Date : 2024-12-14 13:42:09
 
 Directory /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs
 
-Total : 5 files,  28 codes, -2 comments, 4 blanks, all 30 lines
+Total : 3 files,  27 codes, 3 comments, 1 blanks, all 31 lines
 
 [Summary](results.md) / [Details](details.md) / Diff Summary / [Diff Details](diff-details.md)
 
 ## Languages
 | language | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| HTML | 4 | 39 | 2 | 8 | 49 |
-| CSS | 1 | -11 | -4 | -4 | -19 |
+| JavaScript | 1 | 21 | -1 | -2 | 18 |
+| HTML | 1 | 8 | 1 | 2 | 11 |
+| CSS | 1 | -2 | 3 | 1 | 2 |
 
 ## Directories
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| . | 5 | 28 | -2 | 4 | 30 |
-| . (Files) | 4 | 39 | 2 | 8 | 49 |
-| assets | 1 | -11 | -4 | -4 | -19 |
-| assets/css | 1 | -11 | -4 | -4 | -19 |
+| . | 3 | 27 | 3 | 1 | 31 |
+| . (Files) | 1 | 8 | 1 | 2 | 11 |
+| assets | 2 | 19 | 2 | -1 | 20 |
+| assets/css | 1 | -2 | 3 | 1 | 2 |
+| assets/js | 1 | 21 | -1 | -2 | 18 |
 
 [Summary](results.md) / [Details](details.md) / Diff Summary / [Diff Details](diff-details.md)

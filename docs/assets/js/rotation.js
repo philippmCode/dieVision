@@ -285,27 +285,28 @@ if (spaceContainer) {
 
 const container = document.getElementById("container");
 const fullscreenBtn = document.getElementById("fullscreen-btn");
-const fullscreenIcon = document.getElementById("fullscreen-icon");
+const fullscreenIconPath = document.getElementById("fullscreen-icon-path");
 
-// paths
-const expandPath = "M3 3h6v2H5v4H3V3zm18 0v6h-2V5h-4V3h6zm0 18h-6v-2h4v-4h2v6zM3 21v-6h2v4h4v2H3z";
-const collapsePath = "M5 5h4v2H7v2H5V5zm14 0v4h-2V7h-2V5h4zM5 19v-4h2v2h2v2H5zm14 0h-4v-2h2v-2h2v4z"; 
+const iconPath = "M3 3h6v2H5v4H3V3zm18 0v6h-2V5h-4V3h6zm0 18h-6v-2h4v-4h2v6zM3 21v-6h2v4h4v2H3z";
 
-// needs to be fixed
 if (fullscreenBtn) {  
   fullscreenBtn.addEventListener("click", () => {
     if (!document.fullscreenElement) {
         container.requestFullscreen()
             .then(() => {
-                // Wenn der Vollbildmodus aktiviert wird, ändere das Icon
-                fullscreenIcon.setAttribute("d", collapsePath);
+                // Wenn der Vollbildmodus aktiviert wird, ändere das Icon (optional)
+                fullscreenIconPath.setAttribute("d", iconPath);
+                console.log("Aktuelles d-Attribut nach Aktivierung des Vollbildmodus:", fullscreenIconPath.getAttribute("d"));
+                console.log("Vollbildmodus aktiviert");
             })
             .catch((err) => alert(`Fehler beim Aktivieren des Vollbildmodus: ${err.message}`));
     } else {
         document.exitFullscreen()
             .then(() => {
-                // Wenn der Vollbildmodus verlassen wird, ändere das Icon zurück
-                fullscreenIcon.setAttribute("d", expandPath);
+                // Wenn der Vollbildmodus verlassen wird, ändere das Icon (optional)
+                fullscreenIconPath.setAttribute("d", iconPath);
+                console.log("Aktuelles d-Attribut nach Beenden des Vollbildmodus:", fullscreenIconPath.getAttribute("d"));
+                console.log("Vollbildmodus beendet");
             })
             .catch((err) => alert(`Fehler beim Beenden des Vollbildmodus: ${err.message}`));
     }

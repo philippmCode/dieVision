@@ -37,11 +37,6 @@ body, html {
     box-sizing: border-box; /* includes border in the width */
 }
 
-#data {
-    background-color: #fafad2;
-    grid-row: 3;
-    grid-column: 1;
-}
 
 #spaceContainer {
 
