@@ -216,7 +216,7 @@ function startedRotation() {
 
 function endedRotation() {
   const experienceElement = document.getElementById("experience");
-  experienceElement.innerHTML = `Enable Device orientation to experience being in the Atacama`;
+  experienceElement.innerHTML = `Enable Device enjoy the full experience`;
 }
 
 function displayLocation(lat, lon) {
