@@ -64,7 +64,6 @@ function permission() {
                       if (startOrientation === null) {
                           startOrientation = alpha;
                           lastAlpha = alpha; 
-                          displayStartingPoint(startOrientation);
                       }
 
                       if (lastAlpha !== null) {
