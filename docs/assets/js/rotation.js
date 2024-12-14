@@ -80,7 +80,7 @@ function permission() {
                           // position nur anpassen, wenn das Gerät richtig gehalten wird
                           if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
                               container.style.backgroundPositionX = `${-shift}%`;
-                              console.log(container.style.backgroundPositionX)
+                              console.log(container.style.backgroundPositionX);
                           }
                       }
 
