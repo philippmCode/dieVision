@@ -1,128 +1,107 @@
 let orientationListener;
 let mouseControlActive = false;
 
-const locationSwitchElement = document.getElementById("switch1");
-const orientationSwitchElement = document.getElementById("switch2");
-
-if (locationSwitchElement) {
-  locationSwitchElement.addEventListener("change", async (event) => {
+const switchElement = document.getElementById("switch2");
+if (switchElement) {
+  switchElement.addEventListener("change", (event) => {
     if (event.target.checked) {
-      const permissionGranted = await getLocationPermission();
-      if (permissionGranted) {
-        console.log("Location permission granted");
-        getUserLocation();
-      } else {
-        console.log("Permission denied");
-        deactivateSwitch("switch1");
-      }
+        permission();
     } else {
-      console.log("Switch turned off");
-      deactivateSwitch("switch1");
-    }
-  });
-}
-
-if (orientationSwitchElement) {
-  orientationSwitchElement.addEventListener("change", (event) => {
-    if (event.target.checked) {
-      permission();
-    } else {
-      disableOrientationListener();
+        disableOrientationListener();
     }
   });
 }
 
 function deactivateSwitch(switchName) {
   const switchElement = document.getElementById(switchName);
-  if (switchElement && switchElement.checked) {
+  console.log(switchElement.checked);
+  if (switchElement) {
+    console.log("switch element active");
     switchElement.checked = false;
-    // Trigger change event to update the UI
-    console.log("Switch deactivated, triggering change event.");
-    const event = new Event('change');
-    switchElement.dispatchEvent(event);
   }
+  console.log(switchElement.checked);
+  console.log("deactivating switch");
 }
 
 function disableOrientationListener() {
-  console.log("Switch deactivated, removing listener.");
+  console.log("Switch deaktiviert, Listener wird entfernt.");
   endedRotation();
   if (orientationListener) {
+    console.log("Wir gehen rein");
     window.removeEventListener("deviceorientation", orientationListener);  // removes the listener
     orientationListener = null;  // to make sure listener was removed
   }
+  console.log("wir sind hier");
   if (mouseControlActive) {
+    console.log("wir werden die mausssteuerung deaktivieren");
     mouseControlActive = false;
     disableMouseControl();
   }
 }
 
-async function getLocationPermission() {
-  try {
-    const result = await navigator.permissions.query({ name: 'geolocation' });
-    if (result.state === 'granted') {
-      return true;
-    } else if (result.state === 'prompt') {
-      const permissionResult = await new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject);
-      });
-      return !!permissionResult;
-    }
-    return false;
-  } catch (error) {
-    console.log('Geolocation permission denied', error);
-    return false;
-  }
-}
+document.getElementById("switch1").addEventListener("change", getUserLocation);
 
 function permission() {
   if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
-    DeviceOrientationEvent.requestPermission()
-      .then(response => {
-        console.log("Response: ", response);
-        if (response === "granted") {
-          console.log("Permission granted");
-          startedRotation();
-          let startOrientation = null;
-          let lastAlpha = null;       
-          let shift = -50;    // starting position
+      DeviceOrientationEvent.requestPermission()
+          .then(response => {
+              console.log("Response: ", response);
+              if (response === "granted") {
+                  console.log("Permission granted");
+                  startedRotation();
+                  let startOrientation = null;
+                  let lastAlpha = null;       
+                  let shift = -50;    // starting position
 
-          // Gerät-Orientierung-Listener
-          console.log("Starting orientation listener");
-          orientationListener = (event) => {
-            console.log("Orientation event listener triggered");
-            const alpha = event.alpha;
-            const beta = event.beta;
-            const gamma = event.gamma;
+                  // Gerät-Orientierung-Listener
+                  console.log("wir starten das ding");
+                  orientationListener = (event) => {
+                      console.log("Orientation event listener triggered");
+                      const alpha = event.alpha; 
+                      const beta = event.beta;
+                      const gamma = event.gamma;
 
-            if (startOrientation === null) {
-              startOrientation = alpha;
-              lastAlpha = alpha; 
-            }
+                      if (startOrientation === null) {
+                          startOrientation = alpha;
+                          lastAlpha = alpha; 
+                          displayStartingPoint(startOrientation);
+                      }
 
-            if (lastAlpha !== null) {
-              let delta = alpha - lastAlpha;
-              // transition at 360°/0°-border
-              if (delta > 180) {
-                delta -= 360;
-              } else if (delta < -180) {
-                delta += 360;
+                      if (lastAlpha !== null) {
+                          let delta = alpha - lastAlpha;
+                          // transition at 360°/0°-border
+                          if (delta > 180) {
+                              delta -= 360;
+                          } else if (delta < -180) {
+                              delta += 360;
+                          }
+
+                          // shift in %
+                          shift += (delta / 360) * 200;
+
+                          // position nur anpassen, wenn das Gerät richtig gehalten wird
+                          if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
+                              console.log("rotation shift executed");
+                              container.style.backgroundPositionX = `${-shift}%`;
+                          }
+                      }
+
+                      lastAlpha = alpha; // store alpha value for next event
+                  };
+
+                  // Bestätige, dass der Event-Listener gesetzt wird
+                  console.log("Event listener wird gesetzt");
+                  window.addEventListener("deviceorientation", orientationListener);
+              } else {
+                  console.log("Permission wurde nicht erteilt");
+                  deactivateSwitch("switch2");
               }
-
-              // shift in %
-              shift += (delta / 360) * 200;
-
-              // position nur anpassen, wenn das Gerät richtig gehalten wird
-              if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
-                console.log("Rotation shift executed");
-                container.style.backgroundPositionX = `${-shift}%`;
-              }
-            }
-          };
-
-          window.addEventListener("deviceorientation", orientationListener);
-        }
-      })
-      .catch(console.error);
+          })
+          .catch(console.error);
+  } else {
+      console.log("Device Orientation nicht verfügbar.");
+      startedRotation();
+      enableMouseControl();
   }
 }
 
@@ -219,6 +198,7 @@ function getUserLocation() {
   }
 }
 
+
 function getCurrentPageName() {
   const url = window.location.href;  // Holt die vollständige URL der Seite
   const pathParts = url.split("/");  // Teilt die URL anhand des "/"
@@ -309,7 +289,8 @@ const expandPath = "M3 3h6v2H5v4H3V3zm18 0v6h-2V5h-4V3h6zm0 18h-6v-2h4v-4h2v6zM3
 const collapsePath = "M5 5h4v2H7v2H5V5zm14 0v4h-2V7h-2V5h4zM5 19v-4h2v2h2v2H5zm14 0h-4v-2h2v-2h2v4z"; 
 
 // needs to be fixed
-fullscreenBtn.addEventListener("click", () => {
+if (fullscreenBtn) {  
+  fullscreenBtn.addEventListener("click", () => {
     if (!document.fullscreenElement) {
         container.requestFullscreen()
             .then(() => {
@@ -325,5 +306,5 @@ fullscreenBtn.addEventListener("click", () => {
             })
             .catch((err) => alert(`Fehler beim Beenden des Vollbildmodus: ${err.message}`));
     }
-});
-
+  });
+}
