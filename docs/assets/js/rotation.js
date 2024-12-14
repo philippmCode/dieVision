@@ -171,7 +171,10 @@ const locationMap = new Map([
   ["vancouver", { lat: 49.246292, lon: -123.116226 }],
   ["atacama-desert", { lat: -23.863213, lon: -69.141754 }],
   ["bad-wildbad", { lat: 48.750244, lon: 8.550301 }],
-  ["cerro-paranal", { lat:  -24.6230, lon: -70.4025 }]
+  ["cerro-paranal", { lat:  -24.6230, lon: -70.4025 }],
+  ["singapore", { lat:  1.290270, lon: 103.851959 }],
+  ["waterfront", { lat:  1.282375, lon: 103.864273 }],
+  ["skyscraper", { lat:  1.28414719674, lon: 103.850613264 }]
 ]);
 
 // Funktion, um die Position des Nutzers zu holen
