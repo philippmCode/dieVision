@@ -56,7 +56,6 @@ function permission() {
                   // Gerät-Orientierung-Listener
                   console.log("wir starten das ding");
                   orientationListener = (event) => {
-                      console.log("Orientation event listener triggered");
                       const alpha = event.alpha; 
                       const beta = event.beta;
                       const gamma = event.gamma;
@@ -80,8 +79,8 @@ function permission() {
 
                           // position nur anpassen, wenn das Gerät richtig gehalten wird
                           if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
-                              console.log("rotation shift executed");
                               container.style.backgroundPositionX = `${-shift}%`;
+                              console.log(backgroundPositionX)
                           }
                       }
 

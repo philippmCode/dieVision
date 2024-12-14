@@ -37,7 +37,6 @@ body, html {
     box-sizing: border-box; /* includes border in the width */
 }
 
-
 #spaceContainer {
 
     grid-row: 3;
