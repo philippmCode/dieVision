@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360 Image Viewer</title>
+    <link rel="stylesheet" href="assets/css/picture.css">
+</head>
+<body>
+
+    <div class="grid-container">
+
+        <div id="headerDiv">
+            <header>
+                <h1>Singapore</h1>
+            </header>
+            
+            <p><br>Singapore, an island and city state south of Malaysia, is a global financial 
+                center with a tropical climate and a multicultural population. In the colonial-era 
+                center of the city lies the Pandang, which has been used as a cricket ground since t
+                he 1830s and is now surrounded by magnificent buildings such as the city hall with 
+                its 18 Corinthian columns.
+            </p>
+        </div>
+
+        <div id="distanceContainer">
+
+            <h4>Interactive features</h4>
+            <p><br></p>
+            <!-- Rounded switch -->
+            <div id="switchBox">
+                <label class="switch">
+                  <input type="checkbox" id="switch1">
+                  <span class="slider"></span>
+                </label>
+                <span class="switch-label">Location</span>
+            </div>
+
+            <p><span id="location">Activate the location access switch to see your distance to Singapore</span></p>
+            <span id="distance"></span></p>
+            <p><br></p>
+            
+            <div id="switchBox">
+                <label class="switch">
+                  <input type="checkbox" id="switch2">
+                  <span class="slider"></span>
+                </label>
+                <span class="switch-label">Orientation</span>
+            </div>
+            <p><span id="experience">Enable Device orientation to experience being in Singapore</span></p>
+
+        </div>
+    
+        <div id="container" style="background-image: url(assets/images/Singapore.heic);">
+            <button id="fullscreen-btn">
+                <svg id="fullscreen-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M3 3h6v2H5v4H3V3zm18 0v6h-2V5h-4V3h6zm0 18h-6v-2h4v-4h2v6zM3 21v-6h2v4h4v2H3z"></path>
+                </svg>
+            </button>
+        </div>
+
+    </div>
+
+    <script src="assets/js/rotation.js"></script>
+</body>
+</html>
