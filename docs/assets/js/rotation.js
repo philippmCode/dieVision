@@ -77,17 +77,14 @@ function permission() {
                           // shift in %
                           shift += (delta / 360) * 100;
 
-                          // Use modulo operation to ensure smooth wrapping
-                          shift = ((shift % 100) + 100) % 100;
-
                           // position nur anpassen, wenn das Gerät richtig gehalten wird
                           if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
                               container.style.backgroundPositionX = `${-shift}%`;
                               console.log(container.style.backgroundPositionX);
                           }
-
-                          lastAlpha = alpha; // store alpha value for next event
                       }
+
+                      lastAlpha = alpha; // store alpha value for next event
                   };
 
                   // Bestätige, dass der Event-Listener gesetzt wird
