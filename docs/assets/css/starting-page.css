@@ -23,8 +23,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    grid-column: 2;
     grid-row: 1;
+    grid-column: 2;
     padding: 10px; /* distance in the container */
     margin-bottom: 15px; 
 }
@@ -87,9 +87,9 @@ body {
     }
 
     #headerDiv {
-        grid-column: 2;
         margin-bottom: 15px;
         background-color: red;
+        height: flex;
     }
 
     #thumbnail-container {
@@ -117,10 +117,6 @@ body {
         font-size: 20px;
     }
 
-    #headerDiv {
-        grid-column: 1;
-        margin-bottom: 10px;
-    }
 }
 
 /* Smartphones (landscape) */
@@ -133,11 +129,6 @@ body {
 
     h2 {
         font-size: 18px;
-    }
-
-    #headerDiv {
-        grid-column: 1 / span 2;
-        margin-bottom: 8px;
     }
 }
 
@@ -160,7 +151,7 @@ body {
 
     .thumbnail-box {
         width: 40vw;
-        height: 40vh;
+        height: 20vh;
     }
 }
 

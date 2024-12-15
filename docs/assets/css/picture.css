@@ -57,6 +57,7 @@ header {
 
 /* Smartphones (portrait) */
 @media (max-width: 600px) and (orientation: portrait) {
+    
     h1 {
         font-size: 40px;
     }
@@ -81,6 +82,7 @@ header {
 
 /* Smartphones (landscape) */
 @media (max-width: 600px) and (orientation: landscape) {
+    
     h1 {
         font-size: 35px;
     }
