@@ -87,10 +87,6 @@ header {
         margin: 10px;
     }
 
-    #headerDiv {
-        text-align: center;
-    }
-
     #distanceContainer {
         margin-top: 20px;
         margin-bottom: 10px;
@@ -115,10 +111,6 @@ header {
 
     body, html {
         margin: 8px;
-    }
-
-    #headerDiv {
-        text-align: center;
     }
 
     #distanceContainer {
@@ -146,10 +138,6 @@ header {
         margin: 15px;
     }
 
-    #headerDiv {
-        text-align: center;
-    }
-
     #distanceContainer {
         margin-top: 30px;
         margin-bottom: 15px;
@@ -173,10 +161,6 @@ header {
 
     body, html {
         margin: 12px;
-    }
-
-    #headerDiv {
-        text-align: center;
     }
 
     #distanceContainer {
