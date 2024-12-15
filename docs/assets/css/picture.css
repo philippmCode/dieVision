@@ -124,17 +124,17 @@ header {
     #distanceContainer {
         margin-top: 20px;
         margin-bottom: 10px;
-        width: 80vw;
+        width: 85vw;
     }
 
     #container {
-        width: 80vw;
+        width: 85vw;
         height: 50vh;
     }
 
     #spaceContainer {
-        width: 80vw;
-        height: 50vh;
+        width: 85vw;
+        height: 35vh;
     }
 }
 
@@ -156,21 +156,21 @@ header {
     #distanceContainer {
         margin-top: 15px;
         margin-bottom: 8px;
-        width: 80vw;
+        width: 85vw;
     }
 
     #headerDiv {
-        width: 80vw;
+        width: 85vw;
     }
 
     #container {
-        width: 80vw;
+        width: 85vw;
         height: 50vh;
     }
 
     #spaceContainer {
-        width: 50vw;
-        height: 50vh;
+        width: 85vw;
+        height: 85vh;
     }
 }
 
@@ -189,23 +189,23 @@ header {
     }
 
     #headerDiv {
-        width: 70vw;
+        width: 80vw;
     }
 
     #distanceContainer {
         margin-top: 30px;
         margin-bottom: 15px;
-        width: 70vw;
+        width: 80vw;
         background-color: #2196F3;
     }
 
     #container {
-        width: 70vw;
+        width: 80vw;
         height: 50vh;
     }
 
     #spaceContainer {
-        width: 50vw;
+        width: 80vw;
         height: 50vh;
     }
 }
