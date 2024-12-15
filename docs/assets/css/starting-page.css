@@ -110,15 +110,15 @@ h1 {
 }
 
 /* Smartphones (portrait) */
-@media (max-width: 900px) and (orientation: portrait) {
+@media (max-width: 800px) and (orientation: portrait) {
 
     h1 {
-        font-size: 100px;
+        font-size: 50px;
         background-color: yellow;
     }
 
     h2 {
-        font-size: 30px;
+        font-size: 25px;
     }
 
     #thumbnail-container {
@@ -134,7 +134,7 @@ h1 {
 }
 
 /* Smartphones (landscape) */
-@media (max-width: 900px) and (orientation: landscape) {
+@media (max-width: 800px) and (orientation: landscape) {
 
     h1 {
         font-size: 100px;
@@ -153,12 +153,12 @@ h1 {
 
     .thumbnail-box {
         width: 30vw;
-        height: 15vh;
+        height: 30vh;
     }
 }
 
 /* Tablets (portrait) */
-@media (min-width: 901px) and (max-width: 1200px) and (orientation: portrait) {
+@media (min-width: 801px) and (max-width: 1200px) and (orientation: portrait) {
 
     h1 {
         font-size: 140px;
@@ -182,7 +182,7 @@ h1 {
 }
 
 /* Tablets (landscape) */
-@media (min-width: 901px) and (max-width: 1200px) and (orientation: landscape) {
+@media (min-width: 801px) and (max-width: 1200px) and (orientation: landscape) {
 
     h1 {
         font-size: 140px;
@@ -194,7 +194,7 @@ h1 {
     }
 
     #thumbnail-container {
-        width:70vw;
+        width: 65vw;
         gap: 10px;
         row-gap: 40px;
     }
