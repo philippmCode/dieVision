@@ -14,6 +14,9 @@ body {
 .grid-container > div {
     padding-left: 10px;
     box-sizing: border-box; /* includes border in the width */
+
+    border: solid;
+    border-color: #2196F3;
 }
 
 #headerDiv {

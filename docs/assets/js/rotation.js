@@ -79,10 +79,7 @@ function permission() {
 
                           // position nur anpassen, wenn das Gerät richtig gehalten wird
                           if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
-                              console.log("delta " + delta);
-                              console.log("shift " + shift);
                               container.style.backgroundPositionX = `${-shift}%`;
-                              console.log(container.style.backgroundPositionX);
                           }
                       }
 
@@ -291,8 +288,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("container");
   const fullscreenBtn = document.getElementById("fullscreen-btn");
 
+  // Function to log the device type
+  function logDeviceType() {
+    const width = window.innerWidth;
+
+    if (width <= 600) {
+      console.log("Device type: Smartphone");
+    } else if (width > 600 && width <= 900) {
+      console.log("Device type: Tablet");
+    } else {
+      console.log("Device type: Laptop/Desktop");
+    }
+  }
+
+  // Log the device type when the page loads
+  logDeviceType();
+
+  // Optionally, log the device type when the window is resized
+  window.addEventListener("resize", logDeviceType);
+
   if (fullscreenBtn) {  
     fullscreenBtn.addEventListener("click", () => {
+      console.log("Vollbildmodus wird aktiviert.");
       if (!document.fullscreenElement && !document.webkitFullscreenElement) { // Check for webkitFullscreenElement for iOS Safari
         if (container.requestFullscreen) {
           container.requestFullscreen()
