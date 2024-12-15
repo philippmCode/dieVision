@@ -85,8 +85,13 @@ header {
         margin-bottom: 20px;
     }
 
-    #container {
+    #container, #spaceContainer {
         width: 63vw;
+        height: 50vh;
+    }
+
+    #spaceContainer {
+        width: 50vw;
         height: 50vh;
     }
 }
