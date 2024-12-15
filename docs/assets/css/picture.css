@@ -69,6 +69,7 @@ header {
 @media (min-width: 1201px) {
     h1 {
         font-size: 70px;
+        background-color: pink;
     }
 
     h4 {
