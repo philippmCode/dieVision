@@ -85,7 +85,7 @@ header {
         margin-bottom: 20px;
     }
 
-    #container, #spaceContainer {
+    #container {
         width: 63vw;
         height: 50vh;
     }
@@ -118,6 +118,7 @@ header {
 
     #container {
         width: 80vw;
+        height: 50vh;
     }
 }
 
@@ -143,6 +144,7 @@ header {
 
     #container {
         width: 80vw;
+        height: 50vh;
     }
 }
 
@@ -166,7 +168,8 @@ header {
     }
 
     #container {
-        grid-template-columns: 75vw;
+        width: 75vw;
+        height: 50vh;
     }
 }
 
