@@ -14,7 +14,6 @@ body {
 .grid-container > div {
     padding-left: 10px;
     box-sizing: border-box; /* includes border in the width */
-
     border: solid;
     border-color: #2196F3;
 }
@@ -30,19 +29,6 @@ body {
     margin-bottom: 15px; 
 }
 
-h1 {
-    font-size: 140px;
-    color: #0f0202;
-    margin: 40px;
-    margin-bottom: 0px;
-}
-
-h2 {
-    font-size: 35px;
-    color: #0f0202;
-    margin-bottom: 10px;
-}
-
 #destinationsDiv {
     grid-row: 2;
     grid-column: 2;
@@ -53,8 +39,6 @@ h2 {
 #thumbnail-container {
     grid-row: 3;
     grid-column: 2;
-    width:63vw;
-    height: 70vh;
 
     display: flex;
     flex-wrap: wrap; 
@@ -88,4 +72,120 @@ h2 {
 .thumbnail-text {
     border-top: 2px solid #0f0202;
     display: block;
+}
+
+/* Laptops/Desktops */
+@media (min-width: 901px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr 1fr; /* Three columns */
+    }
+
+    h1 {
+        font-size: 140px;
+        color: #0f0202;
+        margin: 40px;
+        margin-bottom: 0px;
+    }    
+
+    h2 {
+        font-size: 35px;
+    }
+
+    #headerDiv {
+        grid-column: 2;
+        margin-bottom: 15px;
+        background-color: red;
+    }
+
+    #thumbnail-container {
+        width:63vw;
+        height: 70vh;
+        gap: 10px;
+        row-gap: 40px;
+    }
+}
+
+/* Smartphones (portrait) */
+@media (max-width: 600px) and (orientation: portrait) {
+    .grid-container {
+        grid-template-columns: 1fr; /* Single column */
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    #headerDiv {
+        grid-column: 1;
+        margin-bottom: 10px;
+    }
+}
+
+/* Smartphones (landscape) */
+@media (max-width: 600px) and (orientation: landscape) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr; /* Two columns */
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    #headerDiv {
+        grid-column: 1 / span 2;
+        margin-bottom: 8px;
+    }
+}
+
+/* Tablets (portrait) */
+@media (min-width: 601px) and (max-width: 900px) and (orientation: portrait) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr; /* Two columns */
+    }
+
+    h1 {
+        font-size: 80px;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    #headerDiv {
+        grid-column: 1 / span 2;
+        margin-bottom: 12px;
+    }
+}
+
+/* Tablets (landscape) */
+@media (min-width: 601px) and (max-width: 900px) and (orientation: landscape) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr 1fr; /* Three columns */
+    }
+
+    h1 {
+        font-size: 70px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    #headerDiv {
+        grid-column: 1 / span 3;
+        margin-bottom: 10px;
+    }
+
+    #thumbnail-container {
+        gap: 10px;
+        row-gap: 40px;
+    }
 }
