@@ -226,6 +226,7 @@ header {
 
     #headerDiv {
         width: 63vw;
+        background-color: blanchedalmond;
     }
 
     #distanceContainer {
