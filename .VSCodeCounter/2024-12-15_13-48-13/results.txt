@@ -1,0 +1,43 @@
+Date : 2024-12-15 13:48:13
+Directory : /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs
+Total : 13 files,  1170 codes, 42 comments, 251 blanks, all 1463 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| HTML       |         10 |        536 |         10 |        117 |        663 |
+| CSS        |          2 |        392 |         13 |         87 |        492 |
+| JavaScript |          1 |        242 |         19 |         47 |        308 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                     | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                        |         13 |      1,170 |         42 |        251 |      1,463 |
+| . (Files)                                                                                |         10 |        536 |         10 |        117 |        663 |
+| assets                                                                                   |          3 |        634 |         32 |        134 |        800 |
+| assets/css                                                                               |          2 |        392 |         13 |         87 |        492 |
+| assets/js                                                                                |          1 |        242 |         19 |         47 |        308 |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                 | language   | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/assets/css/picture.css       | CSS        |        230 |          8 |         51 |        289 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/assets/css/starting-page.css | CSS        |        162 |          5 |         36 |        203 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/assets/js/rotation.js        | JavaScript |        242 |         19 |         47 |        308 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/atacama-desert.html          | HTML       |         54 |          1 |         12 |         67 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/bad-wildbad.html             | HTML       |         51 |          1 |         12 |         64 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/cerro-paranal.html           | HTML       |         55 |          1 |         13 |         69 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/index.html                   | HTML       |         77 |          1 |          8 |         86 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/singapore.html               | HTML       |         55 |          1 |         12 |         68 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/skyline.html                 | HTML       |         51 |          1 |         13 |         65 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/skyscraper.html              | HTML       |         51 |          1 |         12 |         64 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/space.html                   | HTML       |         40 |          1 |         11 |         52 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/vancouver.html               | HTML       |         51 |          1 |         12 |         64 |
+| /Users/philippmeyer/Documents/VSCodeProjects/dieVision/docs/waterfront.html              | HTML       |         51 |          1 |         12 |         64 |
+| Total                                                                                    |            |      1,170 |         42 |        251 |      1,463 |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
