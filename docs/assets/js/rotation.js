@@ -293,18 +293,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (fullscreenBtn) {  
     fullscreenBtn.addEventListener("click", () => {
-      if (!document.fullscreenElement) {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) { // Check for webkitFullscreenElement for iOS Safari
+        if (container.requestFullscreen) {
           container.requestFullscreen()
               .then(() => {
                   console.log("Vollbildmodus aktiviert");
               })
               .catch((err) => console.log(`Fehler beim Aktivieren des Vollbildmodus: ${err.message}`));
+        } else if (container.webkitRequestFullscreen) { // iOS Safari
+          container.webkitRequestFullscreen()
+              .then(() => {
+                  console.log("Vollbildmodus aktiviert");
+              })
+              .catch((err) => console.log(`Fehler beim Aktivieren des Vollbildmodus: ${err.message}`));
+        }
       } else {
+        if (document.exitFullscreen) {
           document.exitFullscreen()
               .then(() => {
                   console.log("Vollbildmodus beendet");
               })
               .catch((err) => console.log(`Fehler beim Beenden des Vollbildmodus: ${err.message}`));
+        } else if (document.webkitExitFullscreen) { // iOS Safari
+          document.webkitExitFullscreen()
+              .then(() => {
+                  console.log("Vollbildmodus beendet");
+              })
+              .catch((err) => console.log(`Fehler beim Beenden des Vollbildmodus: ${err.message}`));
+        }
       }
     });
   }
