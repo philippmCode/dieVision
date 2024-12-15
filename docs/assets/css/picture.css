@@ -111,12 +111,22 @@ header {
         margin: 10px;
     }
 
+    #headerDiv {
+        width: 80vw;
+    }
+
     #distanceContainer {
         margin-top: 20px;
         margin-bottom: 10px;
+        width: 80vw;
     }
 
     #container {
+        width: 80vw;
+        height: 50vh;
+    }
+
+    #spaceContainer {
         width: 80vw;
         height: 50vh;
     }
@@ -140,10 +150,20 @@ header {
     #distanceContainer {
         margin-top: 15px;
         margin-bottom: 8px;
+        width: 80vw;
+    }
+
+    #headerDiv {
+        width: 80vw;
     }
 
     #container {
         width: 80vw;
+        height: 50vh;
+    }
+
+    #spaceContainer {
+        width: 50vw;
         height: 50vh;
     }
 }
@@ -162,13 +182,23 @@ header {
         margin: 15px;
     }
 
+    #headerDiv {
+        width: 70vw;
+    }
+
     #distanceContainer {
         margin-top: 30px;
         margin-bottom: 15px;
+        width: 70vw;
     }
 
     #container {
-        width: 90vw;
+        width: 70vw;
+        height: 50vh;
+    }
+
+    #spaceContainer {
+        width: 50vw;
         height: 50vh;
     }
 }
@@ -194,6 +224,11 @@ header {
 
     #container {
         width: 63vw;
+        height: 50vh;
+    }
+
+    #spaceContainer {
+        width: 50vw;
         height: 50vh;
     }
 }
