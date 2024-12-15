@@ -171,4 +171,9 @@ body {
         gap: 10px;
         row-gap: 40px;
     }
+
+    .thumbnail-box {
+        width: 20vw;
+        height: 20vh;
+    }
 }
