@@ -288,56 +288,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("container");
   const fullscreenBtn = document.getElementById("fullscreen-btn");
 
-  // Function to log the device type
-  function logDeviceType() {
-    const width = window.innerWidth;
-
-    if (width <= 600) {
-      console.log("Device type: Smartphone");
-    } else if (width > 600 && width <= 900) {
-      console.log("Device type: Tablet");
-    } else {
-      console.log("Device type: Laptop/Desktop");
-    }
-  }
-
-  // Log the device type when the page loads
-  logDeviceType();
-
-  // Optionally, log the device type when the window is resized
-  window.addEventListener("resize", logDeviceType);
-
   if (fullscreenBtn) {  
     fullscreenBtn.addEventListener("click", () => {
-      console.log("Vollbildmodus wird aktiviert.");
-      if (!document.fullscreenElement && !document.webkitFullscreenElement) { // Check for webkitFullscreenElement for iOS Safari
-        if (container.requestFullscreen) {
+      if (!document.fullscreenElement) {
           container.requestFullscreen()
               .then(() => {
                   console.log("Vollbildmodus aktiviert");
               })
               .catch((err) => console.log(`Fehler beim Aktivieren des Vollbildmodus: ${err.message}`));
-        } else if (container.webkitRequestFullscreen) { // iOS Safari
-          container.webkitRequestFullscreen()
-              .then(() => {
-                  console.log("Vollbildmodus aktiviert");
-              })
-              .catch((err) => console.log(`Fehler beim Aktivieren des Vollbildmodus: ${err.message}`));
-        }
       } else {
-        if (document.exitFullscreen) {
           document.exitFullscreen()
               .then(() => {
                   console.log("Vollbildmodus beendet");
               })
               .catch((err) => console.log(`Fehler beim Beenden des Vollbildmodus: ${err.message}`));
-        } else if (document.webkitExitFullscreen) { // iOS Safari
-          document.webkitExitFullscreen()
-              .then(() => {
-                  console.log("Vollbildmodus beendet");
-              })
-              .catch((err) => console.log(`Fehler beim Beenden des Vollbildmodus: ${err.message}`));
-        }
       }
     });
   }

@@ -54,8 +54,6 @@ body {
     border-radius: 10px;     /* Abgerundete Ecken */
     overflow: hidden;        /* Verhindert, dass das Bild aus dem Kasten herausragt */
     text-align: left;      /* Zentriert den Text */
-    width: 20vw;
-    height: 20vh;
 }
 
 .thumbnail-box:hover {
@@ -76,9 +74,6 @@ body {
 
 /* Laptops/Desktops */
 @media (min-width: 901px) {
-    .grid-container {
-        grid-template-columns: 1fr 1fr 1fr; /* Three columns */
-    }
 
     h1 {
         font-size: 140px;
@@ -103,13 +98,15 @@ body {
         gap: 10px;
         row-gap: 40px;
     }
+
+    .thumbnail-box {
+        width: 20vw;
+        height: 20vh;
+    }
 }
 
 /* Smartphones (portrait) */
 @media (max-width: 600px) and (orientation: portrait) {
-    .grid-container {
-        grid-template-columns: 1fr; /* Single column */
-    }
 
     h1 {
         font-size: 60px;
@@ -127,9 +124,6 @@ body {
 
 /* Smartphones (landscape) */
 @media (max-width: 600px) and (orientation: landscape) {
-    .grid-container {
-        grid-template-columns: 1fr 1fr; /* Two columns */
-    }
 
     h1 {
         font-size: 50px;
@@ -147,9 +141,6 @@ body {
 
 /* Tablets (portrait) */
 @media (min-width: 601px) and (max-width: 900px) and (orientation: portrait) {
-    .grid-container {
-        grid-template-columns: 1fr 1fr; /* Two columns */
-    }
 
     h1 {
         font-size: 80px;
@@ -159,17 +150,19 @@ body {
         font-size: 25px;
     }
 
-    #headerDiv {
-        grid-column: 1 / span 2;
-        margin-bottom: 12px;
+    #thumbnail-container {
+        gap: 10px;
+        row-gap: 40px;
+    }
+
+    .thumbnail-box {
+        width: 40vw;
+        height: 40vh;
     }
 }
 
 /* Tablets (landscape) */
 @media (min-width: 601px) and (max-width: 900px) and (orientation: landscape) {
-    .grid-container {
-        grid-template-columns: 1fr 1fr 1fr; /* Three columns */
-    }
 
     h1 {
         font-size: 70px;
@@ -177,11 +170,6 @@ body {
 
     h2 {
         font-size: 22px;
-    }
-
-    #headerDiv {
-        grid-column: 1 / span 3;
-        margin-bottom: 10px;
     }
 
     #thumbnail-container {
