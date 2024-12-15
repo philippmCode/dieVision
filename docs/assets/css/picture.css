@@ -29,6 +29,22 @@ header {
     margin-bottom: 20px;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: 63vw;
+    grid-template-rows: repeat(3, auto); /* Three rows with dynamic height */
+    width: 63vw; 
+    margin: auto; /* centers the grid */
+    background-color: white;
+}
+
+.grid-container > div {
+    box-sizing: border-box; /* includes border in the width */
+
+    border: solid;
+    border-color: #2196F3;
+}
+
 #container {
     grid-row: 3;
     grid-column: 1;
@@ -143,9 +159,8 @@ header {
         margin-bottom: 15px;
     }
 
-    #container {
-        width: 80vw;
-        height: 50vh;
+    .grid-container {
+        grid-template-columns: 80vw;
     }
 }
 
@@ -174,21 +189,6 @@ header {
     }
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: 63vw;
-    grid-template-rows: repeat(3, auto); /* Three rows with dynamic height */
-    width: 63vw; 
-    margin: auto; /* centers the grid */
-    background-color: white;
-}
-
-.grid-container > div {
-    box-sizing: border-box; /* includes border in the width */
-
-    border: solid;
-    border-color: #2196F3;
-}
 
 #spaceContainer {
 

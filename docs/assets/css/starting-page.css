@@ -128,7 +128,7 @@ h1 {
     }
 
     .thumbnail-box {
-        width: 35vw;
+        width: 40vw;
         height: 17vh;
     }
 }
@@ -146,7 +146,7 @@ h1 {
     }
 
     #thumbnail-container {
-        width:63vw;
+        width: 80vw;
         gap: 10px;
         row-gap: 40px;
     }
@@ -177,7 +177,7 @@ h1 {
     }
 
     .thumbnail-box {
-        width: 350vw;
+        width: 35vw;
         height: 17vh;
     }
 }
