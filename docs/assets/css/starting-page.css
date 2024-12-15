@@ -161,8 +161,9 @@ h1 {
 @media (min-width: 801px) and (max-width: 1200px) and (orientation: portrait) {
 
     h1 {
-        font-size: 140px;
+        font-size: 120px;
         background-color: blue;
+        margin: 30px;
     }
 
     h2 {
@@ -170,14 +171,14 @@ h1 {
     }
 
     #thumbnail-container {
-        width:70vw;
+        width: 80vw;
         gap: 10px;
         row-gap: 40px;
     }
 
     .thumbnail-box {
-        width: 40vw;
-        height: 20vh;
+        width: 350vw;
+        height: 17vh;
     }
 }
 
@@ -187,6 +188,7 @@ h1 {
     h1 {
         font-size: 140px;
         background-color: blue;
+        margin: 40px;
     }
 
     h2 {

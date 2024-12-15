@@ -29,8 +29,20 @@ header {
     margin-bottom: 20px;
 }
 
+#container {
+    grid-row: 3;
+    grid-column: 1;
+    overflow: hidden;
+    position: relative;
+ 
+    background-size: auto 100%;     /* height of the picture is set to 100% of the container, width is proportional*/
+    background-repeat: repeat-x;  
+    background-position-x: 50%;
+    background-position-y: center;
+}
+
 /* Laptops/Desktops */
-@media (min-width: 901px) {
+@media (min-width: 1201px) {
   h1 {
       font-size: 70px;
   }
@@ -53,11 +65,16 @@ header {
       margin-top: 40px;
       margin-bottom: 20px;
   }
+
+  #container {
+    width: 63vw;
+    height: 50vh;
+}
 }
 
 /* Smartphones (portrait) */
-@media (max-width: 600px) and (orientation: portrait) {
-    
+@media (max-width: 800px) and (orientation: portrait) {
+
     h1 {
         font-size: 40px;
     }
@@ -78,10 +95,15 @@ header {
         margin-top: 20px;
         margin-bottom: 10px;
     }
+
+    #container {
+        width: 80vw;
+        height: 50vh;
+    }
 }
 
 /* Smartphones (landscape) */
-@media (max-width: 600px) and (orientation: landscape) {
+@media (max-width: 800px) and (orientation: landscape) {
     
     h1 {
         font-size: 35px;
@@ -103,10 +125,15 @@ header {
         margin-top: 15px;
         margin-bottom: 8px;
     }
+
+    #container {
+        width: 80vw;
+        height: 50vh;
+    }
 }
 
 /* Tablets (portrait) */
-@media (min-width: 601px) and (max-width: 900px) and (orientation: portrait) {
+@media (min-width: 801px) and (max-width: 1200px) and (orientation: portrait) {
     h1 {
         font-size: 50px;
     }
@@ -127,10 +154,15 @@ header {
         margin-top: 30px;
         margin-bottom: 15px;
     }
+
+    #container {
+        width: 80vw;
+        height: 50vh;
+    }
 }
 
 /* Tablets (landscape) */
-@media (min-width: 601px) and (max-width: 900px) and (orientation: landscape) {
+@media (min-width: 801px) and (max-width: 1200px) and (orientation: landscape) {
     h1 {
         font-size: 45px;
     }
@@ -150,6 +182,11 @@ header {
     #distanceContainer {
         margin-top: 25px;
         margin-bottom: 12px;
+    }
+
+    #container {
+        width: 63vw;
+        height: 50vh;
     }
 }
 
@@ -178,19 +215,6 @@ header {
     object-fit: cover;
 }
 
-#container {
-    width: 63vw;
-    height: 50vh;
-    grid-row: 3;
-    grid-column: 1;
-    overflow: hidden;
-    position: relative;
- 
-    background-size: auto 100%;     /* height of the picture is set to 100% of the container, width is proportional*/
-    background-repeat: repeat-x;  
-    background-position-x: 50%;
-    background-position-y: center;
-}
 
 #image {
     height: 100%;
