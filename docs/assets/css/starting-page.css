@@ -34,6 +34,7 @@ body {
     grid-column: 2;
     margin-bottom: 0px;
     height: flex;
+    width: flex;
 }
 
 #thumbnail-container {
