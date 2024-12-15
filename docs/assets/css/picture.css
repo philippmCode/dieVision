@@ -108,9 +108,8 @@ header {
         margin-bottom: 10px;
     }
 
-    #container {
+    .grid-container > div {
         width: 80vw;
-        height: 50vh;
     }
 }
 
@@ -134,9 +133,8 @@ header {
         margin-bottom: 8px;
     }
 
-    #container {
+    .grid-container > div {
         width: 80vw;
-        height: 50vh;
     }
 }
 
@@ -160,7 +158,7 @@ header {
     }
 
     .grid-container {
-        grid-template-columns: 80vw;
+        grid-template-columns: 75vw;
     }
 }
 

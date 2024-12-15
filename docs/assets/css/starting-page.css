@@ -195,6 +195,12 @@ h1 {
         font-size: 35px;
     }
 
+    #headerDiv {
+        margin-bottom: 15px;
+        background-color: red;
+        height: flex;
+    }
+
     #thumbnail-container {
         width: 65vw;
         gap: 10px;
