@@ -57,35 +57,38 @@ header {
     background-position-y: center;
 }
 
+#spaceContainer {
+
+    grid-column: 1;
+    grid-row: 3;
+    object-fit: cover;
+}
+
 /* Laptops/Desktops */
 @media (min-width: 1201px) {
-  h1 {
-      font-size: 70px;
-  }
+    h1 {
+        font-size: 70px;
+    }
 
-  h4 {
-      font-size: 30px;
-      color: #0f0202;
-      margin-bottom: 0px;
-  }
+    h4 {
+        font-size: 30px;
+        color: #0f0202;
+        margin-bottom: 0px;
+    }
 
-  body, html {
-      margin: 20px;
-  }
+    body, html {
+        margin: 20px;
+    }
 
-  #headerDiv {
-      text-align: left;
-  }
+    #distanceContainer {
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
 
-  #distanceContainer {
-      margin-top: 40px;
-      margin-bottom: 20px;
-  }
-
-  #container {
-    width: 63vw;
-    height: 50vh;
-}
+    #container {
+        width: 63vw;
+        height: 50vh;
+    }
 }
 
 /* Smartphones (portrait) */
@@ -108,7 +111,7 @@ header {
         margin-bottom: 10px;
     }
 
-    .grid-container > div {
+    #container {
         width: 80vw;
     }
 }
@@ -133,7 +136,7 @@ header {
         margin-bottom: 8px;
     }
 
-    .grid-container > div {
+    #container {
         width: 80vw;
     }
 }
@@ -157,7 +160,7 @@ header {
         margin-bottom: 15px;
     }
 
-    .grid-container {
+    #container {
         grid-template-columns: 75vw;
     }
 }
@@ -186,17 +189,6 @@ header {
         height: 50vh;
     }
 }
-
-
-#spaceContainer {
-
-    grid-column: 1;
-    grid-row: 3;
-    width: 63vw;
-    height: 60vh;
-    object-fit: cover;
-}
-
 
 #image {
     height: 100%;
