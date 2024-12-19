@@ -41,9 +41,6 @@ header {
 
 .grid-container > div {
     box-sizing: border-box; /* includes border in the width */
-
-    border: solid;
-    border-color: #2196F3;
 }
 
 #container {
@@ -69,7 +66,6 @@ header {
 @media (min-width: 1201px) {
     h1 {
         font-size: 70px;
-        background-color: pink;
     }
 
     h4 {
@@ -197,7 +193,6 @@ header {
         margin-top: 30px;
         margin-bottom: 15px;
         width: 80vw;
-        background-color: #2196F3;
     }
 
     #container {
@@ -227,7 +222,6 @@ header {
 
     #headerDiv {
         width: 63vw;
-        background-color: blanchedalmond;
     }
 
     #distanceContainer {

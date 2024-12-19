@@ -14,8 +14,6 @@ body {
 .grid-container > div {
     padding-left: 10px;
     box-sizing: border-box; /* includes border in the width */
-    border: solid;
-    border-color: #2196F3;
 }
 
 #headerDiv {
@@ -92,7 +90,6 @@ h1 {
 
     #headerDiv {
         margin-bottom: 15px;
-        background-color: red;
         height: flex;
     }
 
@@ -114,7 +111,6 @@ h1 {
 
     h1 {
         font-size: 50px;
-        background-color: yellow;
     }
 
     h2 {
@@ -138,7 +134,6 @@ h1 {
 
     h1 {
         font-size: 100px;
-        background-color: yellow;
     }
 
     h2 {
@@ -162,7 +157,6 @@ h1 {
 
     h1 {
         font-size: 120px;
-        background-color: blue;
         margin: 30px;
     }
 
@@ -187,7 +181,6 @@ h1 {
 
     h1 {
         font-size: 140px;
-        background-color: blue;
         margin: 40px;
     }
 
@@ -197,7 +190,6 @@ h1 {
 
     #headerDiv {
         margin-bottom: 15px;
-        background-color: red;
         height: flex;
     }
 
