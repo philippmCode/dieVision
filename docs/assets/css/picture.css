@@ -36,7 +36,6 @@ header {
     grid-template-rows: repeat(3, auto); /* Three rows with dynamic height */
     margin: auto; /* centers the grid */
     background-color: white;
-    margin-bottom: 50px;
 }
 
 .grid-container > div {

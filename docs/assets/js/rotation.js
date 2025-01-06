@@ -75,7 +75,7 @@ function permission() {
                           }
 
                           // shift in %
-                          shift += (delta / 360) * 100;
+                          shift += (delta / 360) * 200;
 
                           // position nur anpassen, wenn das Gerät richtig gehalten wird
                           if (Math.abs(beta) < 30 && (90 - Math.abs(gamma)) < 40) {
