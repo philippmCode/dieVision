@@ -198,6 +198,7 @@ h1 {
         width: 65vw;
         gap: 10px;
         row-gap: 40px;
+        margin-bottom: 40px;
     }
 
     .thumbnail-box {
