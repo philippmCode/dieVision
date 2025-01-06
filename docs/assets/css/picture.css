@@ -29,7 +29,6 @@ header {
     grid-column: 1;
     grid-row: 2;
     margin-top: 40px;
-    margin-bottom: 20px;
 }
 
 .grid-container {
@@ -37,6 +36,7 @@ header {
     grid-template-rows: repeat(3, auto); /* Three rows with dynamic height */
     margin: auto; /* centers the grid */
     background-color: white;
+    margin-bottom: 50px;
 }
 
 .grid-container > div {
@@ -48,6 +48,7 @@ header {
     grid-column: 1;
     overflow: hidden;
     position: relative;
+    margin-bottom: 50px;
  
     background-size: auto 100%;     /* height of the picture is set to 100% of the container, width is proportional*/
     background-repeat: repeat-x;  
