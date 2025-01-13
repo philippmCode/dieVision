@@ -3,7 +3,6 @@ let mouseControlActive = false;
 
 document.getElementById("switch1").addEventListener("change", getUserLocation);
 
-// Funktion, um die Position des Nutzers zu holen
 function getUserLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -111,7 +110,6 @@ function rotateBackground() {
   let lastAlpha = null;       
   let shift = -50;    // starting position
 
-  // Gerät-Orientierung-Listener
   orientationListener = (event) => {
       const alpha = event.alpha; 
       const beta = event.beta;
