@@ -13,7 +13,7 @@ In addition, the app calculates the **distance between the user's current locati
 
 ## Project Context
 
-This project was developed as part of a **university assignment**, with the goal of building an interactive HTML5 webpage using modern browser APIs to create a spatially aware experience.
+This project was developed as part of a **university assignment**, with the goal of building an interactive HTML5 webpage using modern browser APIs.
 
 ## Try It Out
 
